@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support & Help Center - EV Savings</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary: #10b981;
+            --accent: #38bdf8;
+            --border: #334155;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 32px 40px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+        h1 {
+            color: var(--primary);
+            font-size: 28px;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        h2 {
+            color: var(--accent);
+            font-size: 20px;
+            margin-top: 28px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 8px;
+        }
+        p, li {
+            color: var(--text-muted);
+            font-size: 15px;
+        }
+        strong {
+            color: var(--text-main);
+        }
+        ul {
+            padding-left: 20px;
+        }
+        .contact-box {
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid var(--accent);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+        .contact-btn {
+            display: inline-block;
+            background: var(--primary);
+            color: #0f172a;
+            font-weight: 700;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+        .contact-btn:hover {
+            opacity: 0.9;
+        }
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .faq-item {
+            margin-bottom: 16px;
+        }
+        .faq-q {
+            color: var(--text-main);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🛠️ EV Savings Support Center</h1>
+        <p>Welcome to the official support hub for <strong>EV Savings: EV Charge & Range Utility Suite</strong>. We are here to help you get the most out of your electric vehicle utility calculations.</p>
+
+        <div class="contact-box">
+            <h3 style="margin-top: 0; color: var(--accent);">Need assistance or have feedback?</h3>
+            <p>If you encounter an issue, have a feature request, or want to suggest custom EV vehicle profiles / local electricity tariffs, our team is ready to assist you.</p>
+            <a href="mailto:yurii.ishchenko@gmail.com?subject=EV%20Savings%20App%20Support" class="contact-btn">✉️ Contact Support via Email</a>
+        </div>
+
+        <h2>Frequently Asked Questions (FAQ)</h2>
+        
+        <div class="faq-item">
+            <div class="faq-q">❓ Does EV Savings require an internet connection?</div>
+            <p>No. EV Savings is built with a 100% offline-first architecture. All calculation engines, battery models, tariff simulators, and local logs operate completely without cellular or Wi-Fi data.</p>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">❓ How does the Live Charge Tracker calculate charge speed?</div>
+            <p>The Live Charge Tracker uses a physical power formula \((P = V \times I)\) combined with battery capacity and efficiency \(\eta\) to calculate added energy over elapsed time \(\Delta t\). You can also fine-tune the SoC percentage with quick calibration buttons to match your car's dashboard.</p>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">❓ How can I export my charge logs or Battery Health Certificate?</div>
+            <p>Navigate to <strong>Settings</strong> &gt; <strong>Data Management</strong> to export your charge logs in JSON/CSV format, or generate an official PDF Battery Health Certificate directly from the Battery SOH screen.</p>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">❓ How can I reset my app data?</div>
+            <p>In <strong>Settings</strong>, you will find options to clear your charge log history or restore all default vehicle profiles and preferences.</p>
+        </div>
+
+        <h2>Privacy & Legal</h2>
+        <p>For information regarding how we handle privacy, please visit our <a href="privacy-policy.html">Privacy Policy</a>.</p>
+
+        <h2>Direct Contact</h2>
+        <p>
+            <strong>Developer:</strong> Yurii Ishchenko<br>
+            <strong>Email:</strong> <a href="mailto:yurii.ishchenko@gmail.com">yurii.ishchenko@gmail.com</a><br>
+            <strong>Location:</strong> Vinnytsia, Ukraine
+        </p>
+    </div>
+    <footer>
+        &copy; 2026 Yurii Ishchenko. All rights reserved. • EV Savings
+    </footer>
+</body>
+</html>
