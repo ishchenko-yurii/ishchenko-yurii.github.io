@@ -26,7 +26,7 @@
             max-width: 800px;
             margin: 0 auto;
             background: var(--card-bg);
-            padding: 32px 40px;
+            padding: 36px 40px;
             border-radius: 16px;
             border: 1px solid var(--border);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
@@ -42,7 +42,7 @@
         h2 {
             color: var(--accent);
             font-size: 20px;
-            margin-top: 28px;
+            margin-top: 32px;
             border-bottom: 1px solid var(--border);
             padding-bottom: 8px;
         }
@@ -57,11 +57,12 @@
             padding-left: 20px;
         }
         .contact-box {
-            background: rgba(56, 189, 248, 0.1);
+            background: rgba(56, 189, 248, 0.08);
             border: 1px solid var(--accent);
             border-radius: 12px;
-            padding: 20px;
+            padding: 24px;
             margin: 24px 0;
+            text-align: left;
         }
         .contact-btn {
             display: inline-block;
@@ -71,7 +72,8 @@
             padding: 12px 24px;
             border-radius: 8px;
             text-decoration: none;
-            margin-top: 10px;
+            margin-top: 12px;
+            transition: opacity 0.2s ease;
         }
         .contact-btn:hover {
             opacity: 0.9;
@@ -84,12 +86,23 @@
             text-decoration: underline;
         }
         .faq-item {
-            margin-bottom: 16px;
+            margin-bottom: 20px;
+            background: rgba(15, 23, 42, 0.6);
+            padding: 16px 20px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
         }
         .faq-q {
             color: var(--text-main);
             font-weight: 600;
-            margin-bottom: 4px;
+            font-size: 16px;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .faq-item p {
+            margin: 0;
         }
         footer {
             margin-top: 40px;
@@ -101,44 +114,44 @@
 </head>
 <body>
     <div class="container">
-        <h1>🛠️ EV Savings Support Center</h1>
-        <p>Welcome to the official support hub for <strong>EV Savings: EV Charge & Range Utility Suite</strong>. We are here to help you get the most out of your electric vehicle utility calculations.</p>
+        <h1>⚡ EV Savings Support Center</h1>
+        <p>Welcome to the official support hub for <strong>EV Savings: EV Charge & Range Utility Suite</strong>. We are here to help you get the most out of your electric vehicle calculations and logs.</p>
 
         <div class="contact-box">
             <h3 style="margin-top: 0; color: var(--accent);">Need assistance or have feedback?</h3>
-            <p>If you encounter an issue, have a feature request, or want to suggest custom EV vehicle profiles / local electricity tariffs, our team is ready to assist you.</p>
-            <a href="mailto:yurii.ishchenko@gmail.com?subject=EV%20Savings%20App%20Support" class="contact-btn">✉️ Contact Support via Email</a>
+            <p>If you encounter any issues, have feature requests, or want to suggest new vehicle profiles or regional electricity tariffs, feel free to reach out:</p>
+            <a href="mailto:ishchenko.yurii.life@gmail.com?subject=EV%20Savings%20App%20Support" class="contact-btn">✉️ Contact Support (ishchenko.yurii.life@gmail.com)</a>
         </div>
 
         <h2>Frequently Asked Questions (FAQ)</h2>
         
         <div class="faq-item">
-            <div class="faq-q">❓ Does EV Savings require an internet connection?</div>
-            <p>No. EV Savings is built with a 100% offline-first architecture. All calculation engines, battery models, tariff simulators, and local logs operate completely without cellular or Wi-Fi data.</p>
+            <div class="faq-q">🔌 Does EV Savings require an active internet connection?</div>
+            <p>No. EV Savings is engineered with a 100% offline-first architecture. All math engines, charging timers, battery health models, and trip calculators work entirely on your device without cellular or Wi-Fi data.</p>
         </div>
 
         <div class="faq-item">
-            <div class="faq-q">❓ How does the Live Charge Tracker calculate charge speed?</div>
-            <p>The Live Charge Tracker uses a physical power formula \((P = V \times I)\) combined with battery capacity and efficiency \(\eta\) to calculate added energy over elapsed time \(\Delta t\). You can also fine-tune the SoC percentage with quick calibration buttons to match your car's dashboard.</p>
+            <div class="faq-q">⏱️ How does the Live Charge Tracker calculate charging speed?</div>
+            <p>The Live Charge Tracker calculates real-time power from your selected voltage and current (Power = Voltage × Current), factoring in charging efficiency and battery capacity. You can easily calibrate the percentage at any moment using the [-5%], [-1%], [+1%], [+5%] buttons to match your vehicle's dashboard.</p>
         </div>
 
         <div class="faq-item">
-            <div class="faq-q">❓ How can I export my charge logs or Battery Health Certificate?</div>
-            <p>Navigate to <strong>Settings</strong> &gt; <strong>Data Management</strong> to export your charge logs in JSON/CSV format, or generate an official PDF Battery Health Certificate directly from the Battery SOH screen.</p>
+            <div class="faq-q">📄 How can I export my charge history or Battery Health Certificate?</div>
+            <p>Go to <strong>Settings</strong> &gt; <strong>Data Management</strong> to export your full charge history as JSON or CSV. You can also generate and share an official PDF Battery Health Certificate directly from the <strong>Battery SOH</strong> screen.</p>
         </div>
 
         <div class="faq-item">
-            <div class="faq-q">❓ How can I reset my app data?</div>
-            <p>In <strong>Settings</strong>, you will find options to clear your charge log history or restore all default vehicle profiles and preferences.</p>
+            <div class="faq-q">🔄 How do I reset or restore app preferences?</div>
+            <p>In <strong>Settings</strong>, you will find options to clear your historical charge logs or restore all default vehicle profiles and tariff configurations.</p>
         </div>
 
         <h2>Privacy & Legal</h2>
-        <p>For information regarding how we handle privacy, please visit our <a href="privacy-policy.html">Privacy Policy</a>.</p>
+        <p>To learn how your privacy is protected, please view our <a href="privacy-policy.html">Privacy Policy</a>.</p>
 
-        <h2>Direct Contact</h2>
+        <h2>Direct Developer Contact</h2>
         <p>
             <strong>Developer:</strong> Yurii Ishchenko<br>
-            <strong>Email:</strong> <a href="mailto:yurii.ishchenko@gmail.com">yurii.ishchenko@gmail.com</a><br>
+            <strong>Email:</strong> <a href="mailto:ishchenko.yurii.life@gmail.com">ishchenko.yurii.life@gmail.com</a><br>
             <strong>Location:</strong> Vinnytsia, Ukraine
         </p>
     </div>
