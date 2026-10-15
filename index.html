@@ -84,10 +84,10 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "How much does it cost to charge an EV at home vs gas?",
+            "name": "How much does it cost to charge an EV at home vs gas, diesel, or LPG?",
             "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Charging a typical 75 kWh EV from 20% to 80% (45 kWh added, ~49.3 kWh drawn from the wall at 91.3% Level 2 efficiency) costs $6.90 at the $0.14/kWh US average home rate, or just $3.94 on an $0.08/kWh off-peak night tariff. Driving 1,000 miles per month costs roughly $38–$44/month on home electricity compared to $125/month in a 28 MPG gas car at $3.50/gallon—saving $970 to $1,200+ per year."
+              "text": "Charging a typical 75 kWh EV from 20% to 80% (45 kWh added, ~49.3 kWh drawn from the wall at 91.3% Level 2 efficiency) costs $8.87 at the $0.18/kWh US EIA national average residential rate (or $4.93 on a $0.10/kWh off-peak night tariff), compared to $23.40 at a $0.52/kWh public DC Fast charger or $22.84 in a 28 MPG gasoline car at the $4.06/gallon AAA national average. In Ukraine (4.32 ₴/kWh day / 2.16 ₴/kWh night) and Germany/EU (0.37 €/kWh DE / 0.29 €/kWh EU average), home EV charging saves 60–80% vs gasoline, diesel, and autogas (LPG).",
+              "@type": "Answer"
             }
           },
           {
@@ -177,10 +177,10 @@
       <!-- Main Page Headline -->
       <div class="hero-headline">
         <h1 id="hero-title">
-          EV Charging <span class="text-cyan">Time &amp; Cost</span> Calculator vs. <span class="text-emerald">Gas &amp; DC Fast</span>
+          EV Charging <span class="text-cyan">Time &amp; Cost</span> Calculator vs. <span class="text-emerald">Gas, Diesel &amp; DC Fast</span>
         </h1>
         <p id="hero-sub">
-          100% client-side math with real wall-to-battery efficiency losses and 80% DC fast-charge taper curves. Zero ads, zero sign-ups.
+          100% client-side math with official national electricity &amp; fuel averages (US, EU/DE, Ukraine), wall-to-battery efficiency losses, and 80% DC fast-charge taper curves.
         </p>
       </div>
 
@@ -307,26 +307,32 @@
           </div>
         </div>
 
-        <!-- Electricity & Gas Rates -->
+        <!-- Official Electricity, Public Charging & Fuel Tariffs -->
         <div class="control-group">
           <div class="control-header">
             <label class="control-label" for="input-home-rate" id="lbl-home-rate">Home Electricity Rate ($/kWh)</label>
-            <span class="control-readout emerald" id="val-home-rate">$0.14/kWh</span>
+            <span class="control-readout emerald" id="val-home-rate">$0.18/kWh</span>
           </div>
-          <input type="range" id="input-home-rate" min="0.04" max="0.60" step="0.01" value="0.14">
+          <input type="range" id="input-home-rate" min="0.04" max="0.60" step="0.01" value="0.18">
           <div class="rate-quick-bar" id="quick-rate-bar">
-            <button type="button" class="quick-rate-btn" data-rate="0.08">🌙 Night Off-Peak $0.08/kWh</button>
-            <button type="button" class="quick-rate-btn active" data-rate="0.14">🇺🇸 US Avg $0.14/kWh</button>
-            <button type="button" class="quick-rate-btn" data-rate="0.28">☀️ High Tier $0.28/kWh</button>
+            <button type="button" class="quick-rate-btn" data-rate="0.10">🌙 Night TOU $0.10/kWh</button>
+            <button type="button" class="quick-rate-btn active" data-rate="0.18">🇺🇸 US EIA Avg $0.18/kWh</button>
+            <button type="button" class="quick-rate-btn" data-rate="0.28">🔌 Public AC Avg $0.28/kWh</button>
+            <button type="button" class="quick-rate-btn" data-rate="0.34">☀️ CA/NE Peak $0.34/kWh</button>
           </div>
 
           <div class="rates-subgrid">
             <div>
               <div class="control-header">
                 <label class="control-label" for="input-dc-rate" id="lbl-dc-rate">Public DC Fast Rate</label>
-                <span class="control-readout" id="val-dc-rate">$0.48/kWh</span>
+                <span class="control-readout" id="val-dc-rate">$0.52/kWh</span>
               </div>
-              <input type="range" id="input-dc-rate" min="0.15" max="0.85" step="0.01" value="0.48">
+              <input type="range" id="input-dc-rate" min="0.20" max="0.85" step="0.01" value="0.52">
+              <div class="rate-quick-bar" id="quick-dc-bar">
+                <button type="button" class="quick-dc-btn" data-dc-rate="0.42">⚡ Member $0.42</button>
+                <button type="button" class="quick-dc-btn active" data-dc-rate="0.52">🇺🇸 US DC Avg $0.52</button>
+                <button type="button" class="quick-dc-btn" data-dc-rate="0.64">🚀 Peak $0.64</button>
+              </div>
             </div>
             <div>
               <div class="control-header">
@@ -337,14 +343,35 @@
             </div>
           </div>
 
-          <div class="rates-subgrid" style="margin-top: 12px;">
-            <div class="num-input-box">
-              <label for="input-gas-mpg" id="lbl-gas-cons">⛽ Comparable Gas MPG</label>
-              <input type="number" id="input-gas-mpg" min="2" max="100" step="1" value="28">
+          <!-- Fuel Type Selector: Gasoline / Diesel / Autogas (LPG) -->
+          <div class="fuel-section-box">
+            <div class="control-header" style="margin-bottom: 8px;">
+              <span class="control-label" id="lbl-fuel-section">Comparable Fuel &amp; Official National Avg</span>
+              <span class="step-pill" id="lbl-fuel-source" style="font-family: var(--font-mono); font-size: 0.69rem; color: var(--emerald);">AAA / US EIA Avg</span>
             </div>
-            <div class="num-input-box">
-              <label for="input-gas-price" id="lbl-gas-price">⛽ Regular Gas ($/gal)</label>
-              <input type="number" id="input-gas-price" min="0.50" max="200.00" step="0.05" value="3.50">
+            <div class="fuel-tabs" id="fuel-type-tabs" role="tablist" aria-label="Comparison Fuel Type">
+              <button type="button" class="fuel-tab active" data-fuel="gasoline">
+                <span class="fuel-tab-title" id="fuel-tab-title-gasoline">⛽ Gasoline</span>
+                <span class="fuel-tab-sub" id="fuel-tab-sub-gasoline">$4.06/gal • 28 MPG</span>
+              </button>
+              <button type="button" class="fuel-tab" data-fuel="diesel">
+                <span class="fuel-tab-title" id="fuel-tab-title-diesel">🛢️ Diesel</span>
+                <span class="fuel-tab-sub" id="fuel-tab-sub-diesel">$5.45/gal • 36 MPG</span>
+              </button>
+              <button type="button" class="fuel-tab" data-fuel="lpg">
+                <span class="fuel-tab-title" id="fuel-tab-title-lpg">🔥 Autogas (LPG)</span>
+                <span class="fuel-tab-sub" id="fuel-tab-sub-lpg">$2.80/gal • 22 MPG</span>
+              </button>
+            </div>
+            <div class="rates-subgrid" style="margin-top: 8px;">
+              <div class="num-input-box">
+                <label for="input-gas-mpg" id="lbl-gas-cons">⛽ Fuel Economy (MPG)</label>
+                <input type="number" id="input-gas-mpg" min="2" max="100" step="1" value="28">
+              </div>
+              <div class="num-input-box">
+                <label for="input-gas-price" id="lbl-gas-price">⛽ Fuel Price ($/gal)</label>
+                <input type="number" id="input-gas-price" min="0.50" max="200.00" step="0.05" value="4.06">
+              </div>
             </div>
           </div>
         </div>
@@ -395,18 +422,18 @@
         <div class="session-cost-grid">
           <div class="cost-box home-highlight">
             <div class="cost-box-title" id="lbl-home-charge">🏠 Home Charge</div>
-            <div class="cost-box-amount" id="res-cost-home">$6.90</div>
-            <div class="cost-box-note" id="res-cost-home-note">@ $0.14/kWh</div>
+            <div class="cost-box-amount" id="res-cost-home">$8.87</div>
+            <div class="cost-box-note" id="res-cost-home-note">@ $0.18/kWh</div>
           </div>
           <div class="cost-box">
             <div class="cost-box-title" id="lbl-public-dc">⚡ Public DC Fast</div>
-            <div class="cost-box-amount" id="res-cost-dc">$21.60</div>
-            <div class="cost-box-note" id="res-cost-dc-note">@ $0.48/kWh</div>
+            <div class="cost-box-amount" id="res-cost-dc">$23.40</div>
+            <div class="cost-box-note" id="res-cost-dc-note">@ $0.52/kWh</div>
           </div>
           <div class="cost-box">
-            <div class="cost-box-title" id="lbl-eq-gas">⛽ Equivalent Gas</div>
-            <div class="cost-box-amount" id="res-cost-gas">$19.69</div>
-            <div class="cost-box-note" id="res-cost-gas-note">28 MPG @ $3.50/gal</div>
+            <div class="cost-box-title" id="lbl-eq-gas">⛽ Gasoline</div>
+            <div class="cost-box-amount" id="res-cost-gas">$22.84</div>
+            <div class="cost-box-note" id="res-cost-gas-note">28 MPG @ $4.06/gal</div>
           </div>
         </div>
 
@@ -414,10 +441,10 @@
         <div class="savings-viral-box">
           <div class="savings-eyebrow" id="savings-eyebrow">💰 Annual &amp; Monthly Home Charging ROI</div>
           <p class="savings-headline" id="savings-headline">
-            You save <span class="mono-emerald" id="res-annual-savings">$974</span> / year (<span id="res-monthly-savings">$81</span> / mo) charging at home vs. gas
+            You save <span class="mono-emerald" id="res-annual-savings">$1,064</span> / year (<span id="res-monthly-savings">$89</span> / mo) charging at home vs. gasoline
           </p>
           <p class="savings-subline" id="res-dc-savings-sub">
-            Plus you save $1,123/yr charging at home vs. public DC Fast stations
+            Plus you save $1,108/yr charging at home vs. public DC Fast stations
           </p>
         </div>
 

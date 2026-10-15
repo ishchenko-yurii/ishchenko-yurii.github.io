@@ -264,7 +264,11 @@ const CHARGER_LEVELS = {
 };
 
 /**
- * Regional Profiles & Full UI Translations (EN / UK / DE)
+ * Regional Profiles, Official National Average Tariffs & Full UI Translations (EN / UK / DE)
+ * Sources:
+ * - USA (en): US EIA (Residential Electricity 18¢/kWh), AAA & DOE AFDC (DCFC $0.52/kWh, Gas $4.06/gal, Diesel $5.45/gal, LPG $2.80/gal)
+ * - Ukraine (uk): КМУ / YASNO (4.32 ₴ day / 2.16 ₴ night), TOKA / ECOFACTOR (AC 14.50 ₴ / DC 18.50 ₴), Мінфін / А-95 (А-95 80.29 ₴, ДП 92.48 ₴, Газ ГБО 43.69 ₴)
+ * - Germany / Europe (de): BDEW / Eurostat (DE 0.37 €/kWh, EU-27 0.29 €/kWh, Nacht/Tibber 0.21 €/kWh), ADAC / EnBW / Ionity (AC 0.49 € / DC 0.62 €), ADAC / EU Oil Bulletin (E10 1.85 €, Diesel 1.75 €, LPG 1.15 €)
  */
 const LOCALES = {
   en: {
@@ -274,17 +278,50 @@ const LOCALES = {
     currencyPrefix: true,
     distUnit: 'mi',
     effUnit: 'mi/kWh',
-    rateSlider: { min: 0.04, max: 0.60, step: 0.01, defaultHome: 0.14 },
-    dcSlider: { min: 0.15, max: 0.85, step: 0.01, defaultDc: 0.48 },
+    rateSlider: { min: 0.04, max: 0.60, step: 0.01, defaultHome: 0.18 },
+    dcSlider: { min: 0.20, max: 0.85, step: 0.01, defaultDc: 0.52 },
     distSlider: { min: 200, max: 3500, step: 50, defaultDist: 1000 },
     effSlider: { min: 1.5, max: 5.5, step: 0.1 },
-    defaultGasCons: 28,
-    defaultGasPrice: 3.50,
     quickRates: [
-      { rate: 0.08, label: '🌙 Night Off-Peak $0.08/kWh' },
-      { rate: 0.14, label: '🇺🇸 US Avg $0.14/kWh' },
-      { rate: 0.28, label: '☀️ High Tier $0.28/kWh' },
+      { rate: 0.10, label: '🌙 Night TOU $0.10/kWh' },
+      { rate: 0.18, label: '🇺🇸 US EIA Avg $0.18/kWh' },
+      { rate: 0.28, label: '🔌 Public AC Avg $0.28/kWh' },
+      { rate: 0.34, label: '☀️ CA/NE Peak $0.34/kWh' },
     ],
+    dcQuickRates: [
+      { rate: 0.42, label: '⚡ Member $0.42' },
+      { rate: 0.52, label: '🇺🇸 US DC Avg $0.52' },
+      { rate: 0.64, label: '🚀 Peak $0.64' },
+    ],
+    fuels: {
+      gasoline: {
+        id: 'gasoline',
+        title: '⛽ Gasoline',
+        sub: '$4.06/gal • 28 MPG',
+        price: 4.06,
+        consumption: 28,
+        cardLabel: '⛽ Gasoline',
+        vsLabel: 'gasoline',
+      },
+      diesel: {
+        id: 'diesel',
+        title: '🛢️ Diesel',
+        sub: '$5.45/gal • 36 MPG',
+        price: 5.45,
+        consumption: 36,
+        cardLabel: '🛢️ Diesel',
+        vsLabel: 'diesel',
+      },
+      lpg: {
+        id: 'lpg',
+        title: '🔥 Autogas (LPG)',
+        sub: '$2.80/gal • 22 MPG',
+        price: 2.80,
+        consumption: 22,
+        cardLabel: '🔥 Autogas (LPG)',
+        vsLabel: 'autogas (LPG)',
+      },
+    },
     ui: {
       navCalc: 'Calculator',
       navGear: 'Recommended Gear',
@@ -297,8 +334,8 @@ const LOCALES = {
       badgeNoAcc: '🚫 No Account Required',
       badgeDrivers: '⚡ Built for US & EU EV Drivers',
       btnDownloadTop: ' Download on the App Store',
-      heroTitleHtml: 'EV Charging <span class="text-cyan">Time &amp; Cost</span> Calculator vs. <span class="text-emerald">Gas &amp; DC Fast</span>',
-      heroSub: '100% client-side math with real wall-to-battery efficiency losses and 80% DC fast-charge taper curves. Zero ads, zero sign-ups.',
+      heroTitleHtml: 'EV Charging <span class="text-cyan">Time &amp; Cost</span> Calculator vs. <span class="text-emerald">Gas, Diesel &amp; DC Fast</span>',
+      heroSub: '100% client-side math with official national electricity & fuel averages (US, EU/DE, Ukraine), wall-to-battery efficiency losses, and 80% DC fast-charge taper curves.',
       step1Title: '1. Select Vehicle Preset',
       step1Pill: '1-Click Setup',
       customPresetSub: 'Manual kWh & eff',
@@ -311,8 +348,10 @@ const LOCALES = {
       lblHomeRate: 'Home Electricity Rate ($/kWh)',
       lblDcRate: 'Public DC Fast Rate',
       lblMonthlyDist: 'Monthly Driving',
-      lblGasCons: '⛽ Comparable Gas MPG',
-      lblGasPrice: '⛽ Regular Gas ($/gal)',
+      lblFuelSection: 'Comparable Fuel & Official National Avg',
+      lblFuelSource: 'AAA / US EIA Avg',
+      lblGasCons: '⛽ Fuel Economy (MPG)',
+      lblGasPrice: '⛽ Fuel Price ($/gal)',
       step2Title: '2. Live Results Dashboard',
       step2Pill: 'Real-Time Math',
       lblEnergyAdded: 'Energy Added',
@@ -320,7 +359,7 @@ const LOCALES = {
       lblSessionComparison: 'Single Session Cost Comparison',
       lblHomeCharge: '🏠 Home Charge',
       lblPublicDc: '⚡ Public DC Fast',
-      lblEqGas: '⛽ Equivalent Gas',
+      lblEqGas: '⛽ Gasoline',
       savingsEyebrow: '💰 Annual & Monthly Home Charging ROI',
       btnCopy: '📋 Copy My EV Savings Summary (for Reddit / Threads)',
       btnCopied: '✅ Copied! Ready to paste on Reddit / Threads',
@@ -335,8 +374,8 @@ const LOCALES = {
       faqHeaderSub: 'Key engineering benchmarks for home charging efficiency, DC fast taper curves, and battery health.',
       faqs: [
         {
-          q: 'How much does it cost to charge an EV at home vs. gas?',
-          a: 'Adding 45 kWh (20% to 80% on a 75 kWh battery) draws ~49.3 kWh from the wall at 91.3% Level 2 efficiency—costing just <strong>$6.90</strong> at $0.14/kWh (or <strong>$3.94</strong> on an $0.08/kWh night tariff), compared to ~$19.69 in gas or $21.60 at a $0.48/kWh DC Fast station.',
+          q: 'How much does it cost to charge an EV at home vs. gas, diesel, or LPG?',
+          a: 'Adding 45 kWh (20% to 80% on a 75 kWh battery) draws ~49.3 kWh from the wall at 91.3% Level 2 efficiency—costing <strong>$8.87</strong> at the $0.18/kWh US EIA national residential average (or <strong>$4.93</strong> on a $0.10/kWh night TOU tariff), compared to ~$22.84 in gasoline ($4.06/gal AAA avg), $23.84 in diesel ($5.45/gal), or $23.40 at a $0.52/kWh public DC Fast charger.',
         },
         {
           q: 'How long does Level 1 vs. Level 2 charging take?',
@@ -360,17 +399,49 @@ const LOCALES = {
     currencyPrefix: false,
     distUnit: 'км',
     effUnit: 'кВт·год/100 км',
-    rateSlider: { min: 1.00, max: 12.00, step: 0.08, defaultHome: 4.32 },
-    dcSlider: { min: 8.00, max: 26.00, step: 0.50, defaultDc: 16.50 },
+    rateSlider: { min: 1.00, max: 18.00, step: 0.02, defaultHome: 4.32 },
+    dcSlider: { min: 10.00, max: 26.00, step: 0.50, defaultDc: 18.50 },
     distSlider: { min: 300, max: 5000, step: 100, defaultDist: 1500 },
     effSlider: { min: 11.0, max: 35.0, step: 0.5 },
-    defaultGasCons: 8.5,
-    defaultGasPrice: 58.00,
     quickRates: [
       { rate: 2.16, label: '🌙 Нічний тариф 2.16 ₴' },
-      { rate: 4.32, label: '🇺🇦 YASNO День 4.32 ₴' },
-      { rate: 8.50, label: '🏢 Комерційний 8.50 ₴' },
+      { rate: 4.32, label: '🇺🇦 Тариф КМУ 4.32 ₴' },
+      { rate: 14.50, label: '🔌 Публічна AC 14.50 ₴' },
     ],
+    dcQuickRates: [
+      { rate: 14.50, label: '🔌 AC 22кВт 14.50 ₴' },
+      { rate: 18.50, label: '🇺🇦 Середня DC 18.50 ₴' },
+      { rate: 21.00, label: '🚀 HPC 150кВт+ 21.00 ₴' },
+    ],
+    fuels: {
+      gasoline: {
+        id: 'gasoline',
+        title: '⛽ Бензин А-95',
+        sub: '80.29 ₴/л • 8.5 л/100км',
+        price: 80.29,
+        consumption: 8.5,
+        cardLabel: '⛽ Бензин А-95',
+        vsLabel: 'бензину А-95',
+      },
+      diesel: {
+        id: 'diesel',
+        title: '🛢️ Дизель (ДП)',
+        sub: '92.48 ₴/л • 6.5 л/100км',
+        price: 92.48,
+        consumption: 6.5,
+        cardLabel: '🛢️ Дизель (ДП)',
+        vsLabel: 'дизелю',
+      },
+      lpg: {
+        id: 'lpg',
+        title: '🔥 Газ (ГБО)',
+        sub: '43.69 ₴/л • 10.5 л/100км',
+        price: 43.69,
+        consumption: 10.5,
+        cardLabel: '🔥 Газ (ГБО)',
+        vsLabel: 'газу (ГБО)',
+      },
+    },
     ui: {
       navCalc: 'Калькулятор',
       navGear: 'Обладнання',
@@ -383,8 +454,8 @@ const LOCALES = {
       badgeNoAcc: '🚫 Без реєстрації та акаунтів',
       badgeDrivers: '⚡ Створено для водіїв США, ЄС та України',
       btnDownloadTop: ' Завантажити в App Store',
-      heroTitleHtml: 'Калькулятор <span class="text-cyan">часу та вартості</span> зарядки EV проти <span class="text-emerald">бензину і DC Fast</span>',
-      heroSub: 'Миттєвий розрахунок у браузері з урахуванням реальних втрат ККД розетки та кривої сповільнення DC-зарядки після 80%. Без реклами та реєстрації.',
+      heroTitleHtml: 'Калькулятор <span class="text-cyan">часу та вартості</span> зарядки EV проти <span class="text-emerald">бензину, дизелю, газу і DC</span>',
+      heroSub: 'Миттєвий розрахунок за офіційними середніми тарифами (Україна, ЄС, США) з урахуванням втрат ККД розетки та кривої сповільнення DC після 80%.',
       step1Title: '1. Оберіть модель електромобіля',
       step1Pill: 'Пресети в 1 клік',
       customPresetSub: 'Власні кВт·год та витрата',
@@ -394,9 +465,11 @@ const LOCALES = {
       lblTargetSoc: 'Цільовий заряд %',
       lblChargerLevel: 'Потужність зарядки / Джерело',
       lblWallLossNote: 'Враховано ККД мережі',
-      lblHomeRate: 'Домашній тариф (₴/кВт·год)',
+      lblHomeRate: 'Домашній / AC тариф (₴/кВт·год)',
       lblDcRate: 'Публічна швидка DC зарядка',
       lblMonthlyDist: 'Місячний пробіг',
+      lblFuelSection: 'Тип пального ДВЗ та середня ціна по Україні',
+      lblFuelSource: 'Мінфін / А-95 Офіційні середні',
       lblGasCons: '⛽ Витрата ДВЗ (л/100 км)',
       lblGasPrice: '⛽ Ціна пального (₴/л)',
       step2Title: '2. Табло результатів наживо',
@@ -406,7 +479,7 @@ const LOCALES = {
       lblSessionComparison: 'Вартість однієї сесії зарядки',
       lblHomeCharge: '🏠 Вдома з розетки',
       lblPublicDc: '⚡ Публічна DC Fast',
-      lblEqGas: '⛽ Аналог на бензині',
+      lblEqGas: '⛽ Бензин А-95',
       savingsEyebrow: '💰 Річна та місячна вигода домашньої зарядки',
       btnCopy: '📋 Скопіювати мій розрахунок економії (для соцмереж / чатів)',
       btnCopied: '✅ Скопійовано! Готово до вставки у Threads / Telegram / Reddit',
@@ -421,8 +494,8 @@ const LOCALES = {
       faqHeaderSub: 'Інженерні розрахунки ККД домашньої зарядки, кривої падіння потужності після 80% та діагностики здоров’я акумулятора.',
       faqs: [
         {
-          q: 'Скільки коштує зарядити електромобіль вдома порівняно з бензином?',
-          a: 'Додавання 45 кВт·год (з 20% до 80% на батареї 75 кВт·год) споживає ~49.3 кВт·год з розетки (ККД 91.3%). За денним тарифом YASNO (4.32 ₴) це коштує <strong>213 ₴</strong>, а за нічним тарифом (2.16 ₴) — лише <strong>106 ₴</strong> за +253 км пробігу проти ~1 246 ₴ на бензині (8.5 л/100 км по 58 ₴/л).',
+          q: 'Скільки коштує зарядити електромобіль вдома порівняно з бензином, дизелем та газом (ГБО)?',
+          a: 'Додавання 45 кВт·год (з 20% до 80% на батареї 75 кВт·год) споживає ~49.3 кВт·год з розетки (ККД 91.3%). За офіційним тарифом КМУ/YASNO (4.32 ₴) це коштує <strong>213 ₴</strong>, а за нічним двозонним тарифом (2.16 ₴) — лише <strong>106 ₴</strong> за +253 км пробігу проти ~1 726 ₴ на бензині А-95 (80.29 ₴/л), ~1 520 ₴ на дизелі (92.48 ₴/л), ~1 160 ₴ на газі ГБО (43.69 ₴/л) або ~833 ₴ на публічній DC-станції (18.50 ₴/кВт·год).',
         },
         {
           q: 'Скільки часу займає зарядка від звичайної розетки проти станції Level 2 (32A)?',
@@ -446,17 +519,50 @@ const LOCALES = {
     currencyPrefix: false,
     distUnit: 'km',
     effUnit: 'kWh/100 km',
-    rateSlider: { min: 0.10, max: 0.65, step: 0.01, defaultHome: 0.30 },
-    dcSlider: { min: 0.35, max: 0.89, step: 0.01, defaultDc: 0.59 },
+    rateSlider: { min: 0.10, max: 0.65, step: 0.01, defaultHome: 0.37 },
+    dcSlider: { min: 0.35, max: 0.89, step: 0.01, defaultDc: 0.62 },
     distSlider: { min: 300, max: 5000, step: 100, defaultDist: 1500 },
     effSlider: { min: 11.0, max: 35.0, step: 0.5 },
-    defaultGasCons: 7.5,
-    defaultGasPrice: 1.75,
     quickRates: [
-      { rate: 0.19, label: '🌙 Nachttarif / Tibber 0.19 €/kWh' },
-      { rate: 0.30, label: '🇩🇪 DE Schnitt 0.30 €/kWh' },
-      { rate: 0.40, label: '☀️ Grundversorgung 0.40 €/kWh' },
+      { rate: 0.21, label: '🌙 Nacht / Tibber 0.21 €' },
+      { rate: 0.29, label: '🇪🇺 EU-Schnitt 0.29 €' },
+      { rate: 0.37, label: '🇩🇪 DE BDEW 0.37 €' },
+      { rate: 0.49, label: '🔌 Public AC 0.49 €' },
     ],
+    dcQuickRates: [
+      { rate: 0.49, label: '⚡ Abo / Tesla 0.49 €' },
+      { rate: 0.62, label: '🇩🇪 DE/EU DC-Schnitt 0.62 €' },
+      { rate: 0.79, label: '🚀 Ad-hoc HPC 0.79 €' },
+    ],
+    fuels: {
+      gasoline: {
+        id: 'gasoline',
+        title: '⛽ Super E10',
+        sub: '1.85 €/L • 7.5 L/100km',
+        price: 1.85,
+        consumption: 7.5,
+        cardLabel: '⛽ Super E10',
+        vsLabel: 'Super E10 (Benzin)',
+      },
+      diesel: {
+        id: 'diesel',
+        title: '🛢️ Diesel',
+        sub: '1.75 €/L • 6.0 L/100km',
+        price: 1.75,
+        consumption: 6.0,
+        cardLabel: '🛢️ Diesel',
+        vsLabel: 'Diesel',
+      },
+      lpg: {
+        id: 'lpg',
+        title: '🔥 Autogas (LPG)',
+        sub: '1.15 €/L • 9.8 L/100km',
+        price: 1.15,
+        consumption: 9.8,
+        cardLabel: '🔥 Autogas (LPG)',
+        vsLabel: 'Autogas (LPG)',
+      },
+    },
     ui: {
       navCalc: 'Lade-Rechner',
       navGear: 'EV-Zubehör',
@@ -469,8 +575,8 @@ const LOCALES = {
       badgeNoAcc: '🚫 Kein Konto erforderlich',
       badgeDrivers: '⚡ Für E-Auto-Fahrer in DE, AT, CH & US',
       btnDownloadTop: ' Im App Store laden',
-      heroTitleHtml: 'E-Auto <span class="text-cyan">Ladezeit- &amp; Kostenrechner</span> vs. <span class="text-emerald">Benzin &amp; DC-Schnellladen</span>',
-      heroSub: '100% lokale Berechnung im Browser inkl. realer Ladeverluste und 80%-DC-Ladekurve (Taper Cliff). Keine Werbung, keine Registrierung.',
+      heroTitleHtml: 'E-Auto <span class="text-cyan">Ladezeit- &amp; Kostenrechner</span> vs. <span class="text-emerald">Benzin, Diesel, LPG &amp; DC</span>',
+      heroSub: '100% lokale Berechnung mit offiziellen Durchschnittstarifen für Deutschland, Europa (EU-27), USA und Ukraine inkl. realer Ladeverluste und 80%-DC-Ladekurve.',
       step1Title: '1. Fahrzeug-Preset wählen',
       step1Pill: '1-Klick-Auswahl',
       customPresetSub: 'Manuelle kWh & Verbrauch',
@@ -480,11 +586,13 @@ const LOCALES = {
       lblTargetSoc: 'Ziel-Ladestand (SoC %)',
       lblChargerLevel: 'Ladeleistung / Stromquelle',
       lblWallLossNote: 'Inkl. Ladeverlusten',
-      lblHomeRate: 'Hausstromtarif (€/kWh)',
+      lblHomeRate: 'Hausstrom / AC-Tarif (€/kWh)',
       lblDcRate: 'Öffentlicher DC-Schnellladetarif',
       lblMonthlyDist: 'Monatliche Fahrleistung',
-      lblGasCons: '⛽ Verbrenner (L/100 km)',
-      lblGasPrice: '⛽ Benzinpreis (€/L)',
+      lblFuelSection: 'Kraftstoff-Vergleich & Offizieller Schnitt',
+      lblFuelSource: 'ADAC / BDEW / Eurostat Schnitt',
+      lblGasCons: '⛽ Verbrauch (L/100 km)',
+      lblGasPrice: '⛽ Kraftstoffpreis (€/L)',
       step2Title: '2. Live-Ergebnisse & Ersparnis',
       step2Pill: 'Echtzeit-Rechnung',
       lblEnergyAdded: 'Geladene Energie',
@@ -492,7 +600,7 @@ const LOCALES = {
       lblSessionComparison: 'Kostenvergleich für diesen Ladevorgang',
       lblHomeCharge: '🏠 Zuhause laden',
       lblPublicDc: '⚡ DC-Schnelllader',
-      lblEqGas: '⛽ Benzin-Äquivalent',
+      lblEqGas: '⛽ Super E10',
       savingsEyebrow: '💰 Jährliche & Monatliche Ersparnis beim Heimladen',
       btnCopy: '📋 Meine EV-Ersparnis kopieren (für Reddit / Threads / Foren)',
       btnCopied: '✅ Kopiert! Bereit zum Einfügen auf Reddit / Threads',
@@ -507,8 +615,8 @@ const LOCALES = {
       faqHeaderSub: 'Wichtige Richtwerte zu Ladeverlusten, DC-Ladekurven ab 80 % und Batterie-Gesundheit (SOH).',
       faqs: [
         {
-          q: 'Was kostet das Laden eines E-Autos zu Hause im Vergleich zu Benzin?',
-          a: 'Das Nachladen von 45 kWh (20 % auf 80 % bei einem 75-kWh-Akku) zieht bei 91,3 % Wallbox-Wirkungsgrad ca. 49,3 kWh aus dem Netz. Bei 0,30 €/kWh kostet das nur <strong>14,79 €</strong> (oder <strong>9,36 €</strong> mit 0,19 €/kWh Nachttarif/Tibber) für +253 km Reichweite — verglichen mit ~33,18 € für Benzin oder 26,55 € am DC-Schnelllader.',
+          q: 'Was kostet das Laden eines E-Autos zu Hause im Vergleich zu Benzin, Diesel und Autogas?',
+          a: 'Das Nachladen von 45 kWh (20 % auf 80 % bei einem 75-kWh-Akku) zieht bei 91,3 % Wallbox-Wirkungsgrad ca. 49,3 kWh aus dem Netz. Beim deutschen BDEW-Haushaltsschnitt (0,37 €/kWh) kostet das <strong>18,24 €</strong>, im EU-Schnitt (0,29 €/kWh) <strong>14,29 €</strong> und mit Nacht-/Tibber-Tarif (0,21 €/kWh) nur <strong>10,35 €</strong> für +253 km — gegenüber ~35,08 € für Super E10 (1,85 €/L), ~26,55 € für Diesel (1,75 €/L) oder 27,90 € am DC-Schnelllader (0,62 €/kWh).',
         },
         {
           q: 'Wie lange dauert Schuko/Level-1-Laden im Vergleich zu einer Wallbox?',
@@ -539,11 +647,12 @@ const state = {
   currentSoc: 20,
   targetSoc: 80,
   chargerId: 'l2_32a',
-  homeRate: 0.14,
-  dcRate: 0.48,
+  homeRate: 0.18,
+  dcRate: 0.52,
   monthlyDistance: 1000,
+  fuelType: 'gasoline',
   gasConsumption: 28,
-  gasPrice: 3.50,
+  gasPrice: 4.06,
   lastSummaryText: '',
 };
 
@@ -623,6 +732,39 @@ function formatDuration(hours) {
 }
 
 /**
+ * Selects a fuel type ('gasoline', 'diesel', 'lpg') and applies its official national average
+ * consumption and price for the active locale.
+ */
+function selectFuelType(fuelKey, shouldRecalculate = true) {
+  const loc = LOCALES[state.lang] || LOCALES.en;
+  const fuelObj = loc.fuels[fuelKey] || loc.fuels.gasoline;
+  state.fuelType = fuelObj.id;
+  state.gasConsumption = fuelObj.consumption;
+  state.gasPrice = fuelObj.price;
+
+  const gasMpgInput = document.getElementById('input-gas-mpg');
+  if (gasMpgInput) {
+    gasMpgInput.step = loc.isMetric ? '0.5' : '1';
+    gasMpgInput.value = state.gasConsumption;
+  }
+
+  const gasPriceInput = document.getElementById('input-gas-price');
+  if (gasPriceInput) {
+    gasPriceInput.step = state.lang === 'uk' ? '0.50' : '0.05';
+    gasPriceInput.value = state.gasPrice.toFixed(2);
+  }
+
+  const fuelTabs = document.querySelectorAll('.fuel-tab');
+  fuelTabs.forEach((tab) => {
+    tab.classList.toggle('active', tab.dataset.fuel === state.fuelType);
+  });
+
+  if (shouldRecalculate) {
+    recalculateAll();
+  }
+}
+
+/**
  * Switches the active language ('en', 'uk', 'de'), updates regional sliders,
  * re-renders static UI labels, Gear Hub, FAQ, and recalculates all values.
  */
@@ -658,13 +800,14 @@ function setLanguage(langCode, updateUrl = true) {
     btn.classList.toggle('active', btn.dataset.lang === normalized);
   });
 
-  // Update regional defaults when switching language (or on initial non-EN load)
+  // Update regional defaults when switching language (or on initial load)
+  const activeFuelObj = loc.fuels[state.fuelType] || loc.fuels.gasoline;
   if (prevLang !== normalized) {
     state.homeRate = loc.rateSlider.defaultHome;
     state.dcRate = loc.dcSlider.defaultDc;
     state.monthlyDistance = loc.distSlider.defaultDist;
-    state.gasConsumption = loc.defaultGasCons;
-    state.gasPrice = loc.defaultGasPrice;
+    state.gasConsumption = activeFuelObj.consumption;
+    state.gasPrice = activeFuelObj.price;
   }
 
   // Update slider min/max/step/value in DOM
@@ -702,19 +845,17 @@ function setLanguage(langCode, updateUrl = true) {
     distInput.value = state.monthlyDistance;
   }
 
-  const gasMpgInput = document.getElementById('input-gas-mpg');
-  if (gasMpgInput) {
-    gasMpgInput.step = loc.isMetric ? '0.5' : '1';
-    gasMpgInput.value = state.gasConsumption;
-  }
+  // Update Fuel Tabs text & active state
+  ['gasoline', 'diesel', 'lpg'].forEach((fKey) => {
+    const fInfo = loc.fuels[fKey];
+    if (fInfo) {
+      setText(`fuel-tab-title-${fKey}`, fInfo.title);
+      setText(`fuel-tab-sub-${fKey}`, fInfo.sub);
+    }
+  });
+  selectFuelType(state.fuelType, false);
 
-  const gasPriceInput = document.getElementById('input-gas-price');
-  if (gasPriceInput) {
-    gasPriceInput.step = normalized === 'uk' ? '0.50' : '0.05';
-    gasPriceInput.value = state.gasPrice.toFixed(2);
-  }
-
-  // Render Quick Rate Buttons
+  // Render Quick Home Electricity Rate Buttons
   const quickRateBar = document.getElementById('quick-rate-bar');
   if (quickRateBar) {
     quickRateBar.innerHTML = loc.quickRates
@@ -724,6 +865,18 @@ function setLanguage(langCode, updateUrl = true) {
       })
       .join('');
     attachQuickRateListeners();
+  }
+
+  // Render Quick DC Rate Buttons
+  const quickDcBar = document.getElementById('quick-dc-bar');
+  if (quickDcBar && loc.dcQuickRates) {
+    quickDcBar.innerHTML = loc.dcQuickRates
+      .map((dr) => {
+        const isActive = Math.abs(dr.rate - state.dcRate) < 0.005;
+        return `<button type="button" class="quick-dc-btn ${isActive ? 'active' : ''}" data-dc-rate="${dr.rate}">${dr.label}</button>`;
+      })
+      .join('');
+    attachQuickDcListeners();
   }
 
   // Update Vehicle Preset Chip texts
@@ -788,6 +941,8 @@ function setLanguage(langCode, updateUrl = true) {
   setText('lbl-home-rate', u.lblHomeRate);
   setText('lbl-dc-rate', u.lblDcRate);
   setText('lbl-monthly-dist', u.lblMonthlyDist);
+  setText('lbl-fuel-section', u.lblFuelSection);
+  setText('lbl-fuel-source', u.lblFuelSource);
   setText('lbl-gas-cons', u.lblGasCons);
   setText('lbl-gas-price', u.lblGasPrice);
 
@@ -797,7 +952,6 @@ function setLanguage(langCode, updateUrl = true) {
   setText('lbl-charge-time', u.lblChargeTime);
   setText('lbl-home-charge', u.lblHomeCharge);
   setText('lbl-public-dc', u.lblPublicDc);
-  setText('lbl-eq-gas', u.lblEqGas);
   setText('savings-eyebrow', u.savingsEyebrow);
   setText('btn-copy-summary', u.btnCopy);
 
@@ -844,10 +998,11 @@ function renderFaqCards() {
 }
 
 /**
- * Core calculation routine invoked on every slider/tab/preset/language input.
+ * Core calculation routine invoked on every slider/tab/preset/language/fuel input.
  */
 function recalculateAll() {
   const loc = LOCALES[state.lang] || LOCALES.en;
+  const activeFuel = loc.fuels[state.fuelType] || loc.fuels.gasoline;
 
   // Ensure Target SoC is always at least Current SoC + 5%
   if (state.currentSoc > 95) state.currentSoc = 95;
@@ -1028,6 +1183,7 @@ function recalculateAll() {
     'lbl-session-comparison',
     `${loc.ui.lblSessionComparison} (${state.currentSoc}% → ${state.targetSoc}%)`
   );
+  setText('lbl-eq-gas', activeFuel.cardLabel);
   setText('res-cost-home', formatMoney(sessionHomeCost));
   setText('res-cost-home-note', `@ ${formatMoney(state.homeRate)}/${kwhLabel}`);
   setText('res-cost-dc', formatMoney(sessionDcCost));
@@ -1052,36 +1208,36 @@ function recalculateAll() {
   if (state.lang === 'uk') {
     setHtml(
       'savings-headline',
-      `Ви економите <span class="mono-emerald" id="res-annual-savings">${annualStr}</span> / рік (<span id="res-monthly-savings">${monthlyStr}</span> / міс), заряджаючись вдома замість бензину`
+      `Ви економите <span class="mono-emerald" id="res-annual-savings">${annualStr}</span> / рік (<span id="res-monthly-savings">${monthlyStr}</span> / міс), заряджаючись вдома замість ${activeFuel.vsLabel}`
     );
     setText(
       'res-dc-savings-sub',
       `Та ще ${dcSavStr}/рік економії порівняно з публічними DC-станціями (${moHomeStr}/міс вдома проти ${moGasStr}/міс на пальне)`
     );
     state.lastSummaryText =
-      `⚡ Моя математика зарядки EV: Додавання ${Math.round(packEnergyKwh)} кВт·год (${state.currentSoc}%→${state.targetSoc}%) коштує лише ${formatMoney(sessionHomeCost)} вдома (${formatMoney(state.homeRate)}/кВт·год) проти ${formatMoney(sessionDcCost)} на DC Fast та ${formatMoney(sessionGasCost)} на бензині. Річна економія вдома: ${annualStr}/рік! Розраховано в EV Savings: ${SITE_URL}/?lang=uk`;
+      `⚡ Моя математика зарядки EV: Додавання ${Math.round(packEnergyKwh)} кВт·год (${state.currentSoc}%→${state.targetSoc}%) коштує лише ${formatMoney(sessionHomeCost)} вдома (${formatMoney(state.homeRate)}/кВт·год) проти ${formatMoney(sessionDcCost)} на DC Fast та ${formatMoney(sessionGasCost)} (${activeFuel.cardLabel}). Річна економія вдома: ${annualStr}/рік! Розраховано в EV Savings: ${SITE_URL}/?lang=uk`;
   } else if (state.lang === 'de') {
     setHtml(
       'savings-headline',
-      `Sie sparen <span class="mono-emerald" id="res-annual-savings">${annualStr}</span> / Jahr (<span id="res-monthly-savings">${monthlyStr}</span> / Monat) beim Heimladen vs. Benzin`
+      `Sie sparen <span class="mono-emerald" id="res-annual-savings">${annualStr}</span> / Jahr (<span id="res-monthly-savings">${monthlyStr}</span> / Monat) beim Heimladen vs. ${activeFuel.vsLabel}`
     );
     setText(
       'res-dc-savings-sub',
-      `Plus ${dcSavStr}/Jahr Ersparnis zu Hause gegenüber öffentlichen DC-Schnellladern (${moHomeStr}/Monat Strom vs. ${moGasStr}/Monat Benzin)`
+      `Plus ${dcSavStr}/Jahr Ersparnis zu Hause gegenüber öffentlichen DC-Schnellladern (${moHomeStr}/Monat Strom vs. ${moGasStr}/Monat ${activeFuel.vsLabel})`
     );
     state.lastSummaryText =
-      `⚡ Meine E-Auto-Laderechnung: ${Math.round(packEnergyKwh)} kWh nachladen (${state.currentSoc}%→${state.targetSoc}%) kostet zu Hause nur ${formatMoney(sessionHomeCost)} (${formatMoney(state.homeRate)}/kWh) vs. ${formatMoney(sessionDcCost)} am DC-Schnelllader vs. ${formatMoney(sessionGasCost)} Benzin. Jährliche Ersparnis: ${annualStr}/Jahr! Berechnet mit EV Savings: ${SITE_URL}/?lang=de`;
+      `⚡ Meine E-Auto-Laderechnung: ${Math.round(packEnergyKwh)} kWh nachladen (${state.currentSoc}%→${state.targetSoc}%) kostet zu Hause nur ${formatMoney(sessionHomeCost)} (${formatMoney(state.homeRate)}/kWh) vs. ${formatMoney(sessionDcCost)} am DC-Schnelllader vs. ${formatMoney(sessionGasCost)} (${activeFuel.vsLabel}). Jährliche Ersparnis: ${annualStr}/Jahr! Berechnet mit EV Savings: ${SITE_URL}/?lang=de`;
   } else {
     setHtml(
       'savings-headline',
-      `You save <span class="mono-emerald" id="res-annual-savings">${annualStr}</span> / year (<span id="res-monthly-savings">${monthlyStr}</span> / mo) charging at home vs. gas`
+      `You save <span class="mono-emerald" id="res-annual-savings">${annualStr}</span> / year (<span id="res-monthly-savings">${monthlyStr}</span> / mo) charging at home vs. ${activeFuel.vsLabel}`
     );
     setText(
       'res-dc-savings-sub',
-      `Plus you save ${dcSavStr}/yr charging at home vs. public DC Fast stations (${moHomeStr}/mo home vs. ${moGasStr}/mo gas)`
+      `Plus you save ${dcSavStr}/yr charging at home vs. public DC Fast stations (${moHomeStr}/mo home vs. ${moGasStr}/mo ${activeFuel.vsLabel})`
     );
     state.lastSummaryText =
-      `⚡ My EV Charging Math: Adding ${Math.round(packEnergyKwh)} kWh (${state.currentSoc}%→${state.targetSoc}%) costs just ${formatMoney(sessionHomeCost)} at home (${formatMoney(state.homeRate)}/kWh) vs ${formatMoney(sessionDcCost)} at DC Fast vs ${formatMoney(sessionGasCost)} on gas. Annual home charging savings: ${annualStr}/yr! Calculated via EV Savings: ${SITE_URL}`;
+      `⚡ My EV Charging Math: Adding ${Math.round(packEnergyKwh)} kWh (${state.currentSoc}%→${state.targetSoc}%) costs just ${formatMoney(sessionHomeCost)} at home (${formatMoney(state.homeRate)}/kWh) vs ${formatMoney(sessionDcCost)} at DC Fast vs ${formatMoney(sessionGasCost)} on ${activeFuel.vsLabel}. Annual home charging savings: ${annualStr}/yr! Calculated via EV Savings: ${SITE_URL}`;
   }
 
   // Update Dynamic Contextual Affiliate Trigger
@@ -1369,6 +1525,20 @@ function attachQuickRateListeners() {
   });
 }
 
+function attachQuickDcListeners() {
+  const dcRateInput = document.getElementById('input-dc-rate');
+  const quickDcBtns = document.querySelectorAll('.quick-dc-btn');
+  quickDcBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const dcVal = Number(btn.dataset.dcRate);
+      state.dcRate = dcVal;
+      if (dcRateInput) dcRateInput.value = dcVal;
+      quickDcBtns.forEach((b) => b.classList.toggle('active', b === btn));
+      recalculateAll();
+    });
+  });
+}
+
 /**
  * Attaches all DOM event listeners for instant oninput responsiveness.
  */
@@ -1492,9 +1662,15 @@ function initCalculatorEvents() {
   if (dcRateInput) {
     dcRateInput.addEventListener('input', (e) => {
       state.dcRate = Number(e.target.value);
+      const quickDcBtns = document.querySelectorAll('.quick-dc-btn');
+      quickDcBtns.forEach((b) =>
+        b.classList.toggle('active', Math.abs(Number(b.dataset.dcRate) - state.dcRate) < 0.005)
+      );
       recalculateAll();
     });
   }
+
+  attachQuickDcListeners();
 
   const monthlyMilesInput = document.getElementById('input-monthly-miles');
   if (monthlyMilesInput) {
@@ -1503,6 +1679,17 @@ function initCalculatorEvents() {
       recalculateAll();
     });
   }
+
+  // 5b. Fuel Type Selector Tabs (Gasoline / Diesel / Autogas LPG)
+  const fuelTabs = document.querySelectorAll('.fuel-tab');
+  fuelTabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const fType = tab.dataset.fuel;
+      if (fType) {
+        selectFuelType(fType, true);
+      }
+    });
+  });
 
   const gasMpgInput = document.getElementById('input-gas-mpg');
   if (gasMpgInput) {
