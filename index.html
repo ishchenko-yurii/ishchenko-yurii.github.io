@@ -1,117 +1,547 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yurii Ishchenko - Mobile Applications</title>
-    <style>
-        :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --primary: #10b981;
-            --accent: #38bdf8;
-            --border: #334155;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Mandatory Apple iOS Smart App Banner -->
+  <meta name="apple-itunes-app" content="app-id=6811996427, app-argument=https://ishchenko-yurii.github.io">
+
+  <title>EV Charging Time &amp; Cost Savings Calculator | EV Savings &amp; Gear Hub</title>
+  <meta name="description" content="Free interactive EV charging time and cost calculator. Compare Home Level 1/Level 2 vs Public DC Fast Charging vs Gas savings, and explore tested EV chargers, BLE OBD2 SOH scanners, and NACS adapters.">
+  <meta name="keywords" content="ev charging calculator, ev charging cost vs gas, level 1 vs level 2 charging time, ev battery state of health soh, nacs to ccs adapter, obd2 ble scanner ev, ev savings app">
+  <meta name="author" content="Yurii Ishchenko">
+  <link rel="canonical" href="https://ishchenko-yurii.github.io/">
+
+  <!-- OpenGraph / Reddit / Threads / Telegram Preview Cards -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ishchenko-yurii.github.io/">
+  <meta property="og:title" content="EV Charging Time &amp; Cost Savings Calculator — Home vs. DC Fast vs. Gas">
+  <meta property="og:description" content="100% free, ad-free client-side EV charging math: calculate exact kWh, wall efficiency losses, charging hours, and annual home charging ROI vs. gas.">
+  <meta property="og:site_name" content="EV Savings: Charging Log">
+  <meta property="og:image" content="https://ishchenko-yurii.github.io/app_store_screenshots/appstore_6.7_slide_1.png">
+
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="EV Charging Time &amp; Cost Savings Calculator | EV Savings">
+  <meta name="twitter:description" content="Calculate exact Level 1, Level 2 &amp; DC Fast charging times, wall kWh losses, and annual EV vs. gas savings in real time.">
+  <meta name="twitter:image" content="https://ishchenko-yurii.github.io/app_store_screenshots/appstore_6.7_slide_1.png">
+
+  <!-- Theme Color for Mobile Safari / Chrome -->
+  <meta name="theme-color" content="#121E24">
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Structured Data JSON-LD for Google & AI Search Engines (ChatGPT, Perplexity, Claude, Gemini) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "EV Savings Interactive Charging Time & Cost Calculator",
+        "url": "https://ishchenko-yurii.github.io/",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "All",
+        "browserRequirements": "Requires JavaScript",
+        "offers": {
+          "@type": "Offer",
+          "price": "0.00",
+          "priceCurrency": "USD"
+        },
+        "description": "Free client-side electric vehicle charging time and cost calculator comparing Home Level 1/Level 2 EVSE, Public DC Fast Chargers, and gas vehicles.",
+        "author": {
+          "@type": "Person",
+          "name": "Yurii Ishchenko"
         }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.6;
-            margin: 0;
-            padding: 40px 20px;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        header {
-            text-align: center;
-            margin-bottom: 48px;
-        }
-        h1 {
-            font-size: 32px;
-            color: var(--text-main);
-            margin-bottom: 8px;
-        }
-        .subtitle {
-            color: var(--text-muted);
-            font-size: 16px;
-        }
-        .app-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 28px;
-            margin-bottom: 24px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-        }
-        .app-title {
-            font-size: 22px;
-            font-weight: 700;
-            color: var(--primary);
-            margin: 0 0 12px 0;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .app-desc {
-            color: var(--text-muted);
-            font-size: 15px;
-            margin-bottom: 20px;
-        }
-        .links {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-        .btn {
-            display: inline-block;
-            background: rgba(56, 189, 248, 0.15);
-            color: var(--accent);
-            border: 1px solid var(--accent);
-            padding: 8px 16px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 600;
-            transition: all 0.2s ease;
-        }
-        .btn:hover {
-            background: var(--accent);
-            color: #0f172a;
-        }
-        footer {
-            margin-top: 60px;
-            text-align: center;
-            font-size: 13px;
-            color: var(--text-muted);
-        }
-    </style>
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "EV Savings: Charging Log",
+        "operatingSystem": "iOS",
+        "applicationCategory": "UtilitiesApplication",
+        "downloadUrl": "https://apps.apple.com/us/app/ev-savings-charging-log/id6811996427",
+        "installUrl": "https://apps.apple.com/us/app/ev-savings-charging-log/id6811996427",
+        "offers": {
+          "@type": "Offer",
+          "price": "0.00",
+          "priceCurrency": "USD"
+        },
+        "description": "7-in-1 Offline EV Utility Suite for iOS: Real-Time Live Charge Tracker, Dual-Tariff Night Timer, Winter & Highway Range Loss Estimator, and SOH Battery Health Logbook with PDF Certificate export."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How much does it cost to charge an EV at home vs gas?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Charging a typical 75 kWh EV from 20% to 80% (45 kWh added, ~49.3 kWh drawn from the wall at 91.3% Level 2 efficiency) costs $6.90 at the $0.14/kWh US average home rate, or just $3.94 on an $0.08/kWh off-peak night tariff. Driving 1,000 miles per month costs roughly $38–$44/month on home electricity compared to $125/month in a 28 MPG gas car at $3.50/gallon—saving $970 to $1,200+ per year."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How long does Level 1 vs Level 2 charging take?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A standard 120V / 12A Level 1 wall outlet delivers 1.4 kW (~1.19 kW net after 85% conversion efficiency), taking 32 to 38 hours to add 45 kWh (20% to 80% on a 75 kWh battery). Upgrading to a 240V / 32A–40A Level 2 NEMA 14-50 charger (7.7–9.6 kW) reduces that exact session to 4.7–5.8 hours, allowing 100% of your charging to finish overnight during cheap off-peak utility hours."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why does DC Fast charging slow down after 80% State of Charge?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Above 80% SoC, an EV's Battery Management System (BMS) shifts from Constant Current (CC) to Constant Voltage (CV) to prevent lithium plating and thermal stress. Power on a 150 kW DC Fast charger typically drops to an average of 40–50 kW between 80% and 100%, meaning the final 20% can take almost as long as charging from 20% to 80%."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How to check EV battery State of Health (SOH)?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You can track EV battery State of Health (SOH %) by pairing a Bluetooth Low Energy (BLE) OBD2 scanner (such as the OBDLink CX or Veepeak OBDCheck BLE+) with your smartphone, or by logging your 100% full-charge dash range and odometer mileage inside the EV Savings: Charging Log iOS app to generate a verifiable Battery Health PDF Certificate."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Yurii Ishchenko</h1>
-            <p class="subtitle">Mobile Applications &amp; Automotive Utility Suites</p>
-        </header>
 
-        <div class="app-card">
-            <div class="app-title">⚡ EV Savings: EV Charge &amp; Range Utility Suite</div>
-            <p class="app-desc">
-                An offline-first utility suite for electric vehicle drivers to calculate live charging speeds, night tariff savings, winter range degradation, and battery health SOH.
-            </p>
-            <div class="links">
-                <a href="privacy-policy.html" class="btn">📄 Privacy Policy</a>
-                <a href="support.html" class="btn">🛠️ Support &amp; Help</a>
-                <a href="app-ads.txt" class="btn">📋 app-ads.txt</a>
-            </div>
+  <!-- Top Navigation Bar -->
+  <nav class="topbar" aria-label="Main Navigation">
+    <div class="container topbar-inner">
+      <a href="#calculator" class="brand-logo">
+        <span class="brand-bolt" aria-hidden="true">⚡</span>
+        <span>EV Savings</span>
+        <span class="brand-tag">Web Calc + Gear Hub</span>
+      </a>
+      <div class="nav-links">
+        <a href="#calculator" class="nav-link">Calculator</a>
+        <a href="#gear" class="nav-link">Recommended Gear</a>
+        <a href="#faq" class="nav-link">FAQ</a>
+        <a href="https://apps.apple.com/us/app/ev-savings-charging-log/id6811996427" target="_blank" rel="noopener noreferrer" class="nav-cta">
+           iOS App
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero & Top App Store Callout -->
+  <header class="hero-section">
+    <div class="container">
+
+      <!-- App Store Callout Banner (Header) -->
+      <div class="app-callout-banner">
+        <div class="app-callout-content">
+          <div class="app-callout-eyebrow"> Official Companion iOS Utility</div>
+          <h2 class="app-callout-title">EV Savings: Charging Log for iOS</h2>
+          <p class="app-callout-sub">
+            <em>7-in-1 Offline EV Utility: Real-Time Live Charge Tracker, Dual-Tariff Night Timer, Winter Range Loss &amp; SOH Battery PDF Certificates.</em>
+          </p>
+          <div class="trust-badges">
+            <span class="trust-badge">🔒 100% Offline-First</span>
+            <span class="trust-badge">🚫 No Account Required</span>
+            <span class="trust-badge">⚡ Built for US &amp; EU EV Drivers</span>
+          </div>
+        </div>
+        <div>
+          <a href="https://apps.apple.com/us/app/ev-savings-charging-log/id6811996427" target="_blank" rel="noopener noreferrer" class="appstore-btn">
+            <span> Download on the App Store</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Main Page Headline -->
+      <div class="hero-headline">
+        <h1>
+          EV Charging <span class="text-cyan">Time &amp; Cost</span> Calculator vs. <span class="text-emerald">Gas &amp; DC Fast</span>
+        </h1>
+        <p>
+          100% client-side math with real wall-to-battery efficiency losses and 80% DC fast-charge taper curves. Zero ads, zero sign-ups.
+        </p>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Interactive Web Calculator Section (#calculator) -->
+  <main id="calculator" class="container">
+    <div class="calc-grid">
+
+      <!-- LEFT COLUMN: Vehicle Presets & Interactive Sliders -->
+      <section class="cockpit-card" aria-label="EV Charging Inputs">
+        <h2 class="card-section-title">
+          <span>1. Select Vehicle Preset</span>
+          <span class="step-pill">1-Click Setup</span>
+        </h2>
+
+        <div class="preset-chips" role="group" aria-label="EV Model Presets">
+          <button type="button" class="preset-chip active" data-preset="tesla_my_m3">
+            <span class="preset-chip-name">Tesla Model Y / 3 LR</span>
+            <span class="preset-chip-specs">75 kWh • 3.5 mi/kWh</span>
+          </button>
+          <button type="button" class="preset-chip" data-preset="hyundai_kia">
+            <span class="preset-chip-name">Ioniq 5 / EV6 / Niro EV</span>
+            <span class="preset-chip-specs">77 kWh • 3.4 mi/kWh</span>
+          </button>
+          <button type="button" class="preset-chip" data-preset="ford_chevy">
+            <span class="preset-chip-name">Mach-E / Equinox EV</span>
+            <span class="preset-chip-specs">88 kWh • 3.1 mi/kWh</span>
+          </button>
+          <button type="button" class="preset-chip" data-preset="trucks_rivian">
+            <span class="preset-chip-name">F-150 Lightning / R1T</span>
+            <span class="preset-chip-specs">131 kWh • 2.2 mi/kWh</span>
+          </button>
+          <button type="button" class="preset-chip" data-preset="custom">
+            <span class="preset-chip-name">Custom EV</span>
+            <span class="preset-chip-specs">Manual kWh &amp; mi/kWh</span>
+          </button>
         </div>
 
-        <footer>
-            &copy; 2026 Yurii Ishchenko. All rights reserved.
-        </footer>
+        <!-- Battery Capacity & Efficiency -->
+        <div class="control-group">
+          <div class="soc-dual-grid">
+            <div>
+              <div class="control-header">
+                <label class="control-label" for="input-battery">Battery Capacity</label>
+                <span class="control-readout" id="val-battery">75 kWh</span>
+              </div>
+              <input type="range" id="input-battery" min="20" max="200" step="1" value="75">
+              <div class="range-limits">
+                <span>20 kWh</span>
+                <span>200 kWh</span>
+              </div>
+            </div>
+            <div>
+              <div class="control-header">
+                <label class="control-label" for="input-efficiency">EV Efficiency</label>
+                <span class="control-readout" id="val-efficiency">3.5 mi/kWh</span>
+              </div>
+              <input type="range" id="input-efficiency" min="1.5" max="5.5" step="0.1" value="3.5">
+              <div class="range-limits">
+                <span>1.5 mi/kWh</span>
+                <span>5.5 mi/kWh</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Current SoC % & Target SoC % -->
+        <div class="control-group">
+          <div class="soc-dual-grid">
+            <div>
+              <div class="control-header">
+                <label class="control-label" for="input-current-soc">Current SoC %</label>
+                <span class="control-readout" id="val-current-soc">20%</span>
+              </div>
+              <input type="range" id="input-current-soc" min="0" max="95" step="1" value="20">
+              <div class="range-limits">
+                <span>0%</span>
+                <span>95%</span>
+              </div>
+            </div>
+            <div>
+              <div class="control-header">
+                <label class="control-label" for="input-target-soc">Target SoC %</label>
+                <span class="control-readout emerald" id="val-target-soc">80%</span>
+              </div>
+              <input type="range" id="input-target-soc" min="10" max="100" step="1" value="80">
+              <div class="range-limits">
+                <span>10%</span>
+                <span>100%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Charger Level / Power Source -->
+        <div class="control-group">
+          <div class="control-header">
+            <span class="control-label">Charger Level / Power Source</span>
+            <span class="step-pill" style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted);">Includes wall loss</span>
+          </div>
+          <div class="charger-tabs" role="tablist" aria-label="Charger Power Level">
+            <button type="button" class="charger-tab" data-charger="l1">
+              <span class="charger-tab-title">Level 1</span>
+              <span class="charger-tab-kw">1.4 kW</span>
+              <span class="charger-tab-sub">120V / 12A (~85% eff)</span>
+            </button>
+            <button type="button" class="charger-tab active" data-charger="l2_32a">
+              <span class="charger-tab-title">Level 2</span>
+              <span class="charger-tab-kw">7.7 kW</span>
+              <span class="charger-tab-sub">240V / 32A (~91% eff)</span>
+            </button>
+            <button type="button" class="charger-tab" data-charger="l2_48a">
+              <span class="charger-tab-title">Level 2 Fast</span>
+              <span class="charger-tab-kw">11.5 kW</span>
+              <span class="charger-tab-sub">240V / 48A (~92% eff)</span>
+            </button>
+            <button type="button" class="charger-tab" data-charger="dcfc">
+              <span class="charger-tab-title">DC Fast</span>
+              <span class="charger-tab-kw">150 kW</span>
+              <span class="charger-tab-sub">Supercharger / CCS</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Electricity & Gas Rates -->
+        <div class="control-group">
+          <div class="control-header">
+            <label class="control-label" for="input-home-rate">Home Electricity Rate ($/kWh)</label>
+            <span class="control-readout emerald" id="val-home-rate">$0.14/kWh</span>
+          </div>
+          <input type="range" id="input-home-rate" min="0.04" max="0.60" step="0.01" value="0.14">
+          <div class="rate-quick-bar">
+            <button type="button" class="quick-rate-btn" data-rate="0.08">🌙 Night Off-Peak $0.08/kWh</button>
+            <button type="button" class="quick-rate-btn active" data-rate="0.14">🇺🇸 US Avg $0.14/kWh</button>
+            <button type="button" class="quick-rate-btn" data-rate="0.28">☀️ High Tier $0.28/kWh</button>
+          </div>
+
+          <div class="rates-subgrid">
+            <div>
+              <div class="control-header">
+                <label class="control-label" for="input-dc-rate">Public DC Fast Rate</label>
+                <span class="control-readout" id="val-dc-rate">$0.48/kWh</span>
+              </div>
+              <input type="range" id="input-dc-rate" min="0.15" max="0.85" step="0.01" value="0.48">
+            </div>
+            <div>
+              <div class="control-header">
+                <label class="control-label" for="input-monthly-miles">Monthly Driving</label>
+                <span class="control-readout" id="val-monthly-miles">1,000 mi/mo</span>
+              </div>
+              <input type="range" id="input-monthly-miles" min="200" max="3500" step="50" value="1000">
+            </div>
+          </div>
+
+          <div class="rates-subgrid" style="margin-top: 12px;">
+            <div class="num-input-box">
+              <label for="input-gas-mpg">⛽ Comparable Gas MPG</label>
+              <input type="number" id="input-gas-mpg" min="10" max="75" step="1" value="28">
+            </div>
+            <div class="num-input-box">
+              <label for="input-gas-price">⛽ Regular Gas ($/gal)</label>
+              <input type="number" id="input-gas-price" min="1.50" max="8.50" step="0.05" value="3.50">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RIGHT COLUMN: Live Results Dashboard & Contextual Hardware Trigger -->
+      <section class="cockpit-card" aria-label="Live Charging Results">
+        <h2 class="card-section-title">
+          <span>2. Live Results Dashboard</span>
+          <span class="step-pill">Real-Time Math</span>
+        </h2>
+
+        <!-- Energy Added & Estimated Time Tiles -->
+        <div class="results-hero-grid">
+          <div class="metric-tile">
+            <div class="metric-label">Energy Added</div>
+            <div class="metric-value" id="res-energy-pack">45.0 kWh</div>
+            <div class="metric-sub" id="res-energy-sub">49.3 kWh from wall (91% eff) • +158 mi range</div>
+          </div>
+          <div class="metric-tile" id="tile-charging-time">
+            <div class="metric-label">Estimated Charge Time</div>
+            <div class="metric-value" id="res-time">5h 51m</div>
+            <div class="metric-sub" id="res-time-sub">Level 2 (7.7 kW) • 20% → 80%</div>
+          </div>
+        </div>
+
+        <!-- Warning Alerts for Level 1 >12h or DC Fast >80% Taper Cliff -->
+        <div class="alert-pill" id="alert-l1-slow" role="status">
+          <span>⚠️</span>
+          <div>
+            <strong>120V Level 1 Bottleneck (<span id="alert-l1-hours">37h 49m</span>):</strong>
+            Wall-to-pack efficiency drops to ~85% because onboard electronics stay awake for days. A 240V Level 2 EVSE finishes this session in <strong><span id="alert-l2-hours">5h 51m</span></strong>.
+          </div>
+        </div>
+
+        <div class="alert-pill" id="alert-dc-taper" role="status">
+          <span>📉</span>
+          <div>
+            <strong>80% DC Taper Cliff Active:</strong>
+            Above 80% SoC, DC fast-charging power drops from ~120+ kW down to ~45 kW average to protect cell longevity. Unplugging at 80% saves time and money.
+          </div>
+        </div>
+
+        <!-- Single Session Cost Breakdown -->
+        <div class="control-header" style="margin-bottom: 8px;">
+          <span class="control-label">Single Session Cost Comparison (20% → 80%)</span>
+        </div>
+        <div class="session-cost-grid">
+          <div class="cost-box home-highlight">
+            <div class="cost-box-title">🏠 Home Charge</div>
+            <div class="cost-box-amount" id="res-cost-home">$6.90</div>
+            <div class="cost-box-note" id="res-cost-home-note">@ $0.14/kWh</div>
+          </div>
+          <div class="cost-box">
+            <div class="cost-box-title">⚡ Public DC Fast</div>
+            <div class="cost-box-amount" id="res-cost-dc">$21.60</div>
+            <div class="cost-box-note" id="res-cost-dc-note">@ $0.48/kWh</div>
+          </div>
+          <div class="cost-box">
+            <div class="cost-box-title">⛽ Equivalent Gas</div>
+            <div class="cost-box-amount" id="res-cost-gas">$19.69</div>
+            <div class="cost-box-note" id="res-cost-gas-note">28 MPG @ $3.50/gal</div>
+          </div>
+        </div>
+
+        <!-- Viral Monthly & Annual Savings Block -->
+        <div class="savings-viral-box">
+          <div class="savings-eyebrow">💰 Annual &amp; Monthly Home Charging ROI</div>
+          <p class="savings-headline">
+            You save <span class="mono-emerald" id="res-annual-savings">$974</span> / year (<span id="res-monthly-savings">$81</span> / mo) charging at home vs. gas
+          </p>
+          <p class="savings-subline" id="res-dc-savings-sub">
+            Plus you save $1,123/yr charging at home vs. public DC Fast stations
+          </p>
+        </div>
+
+        <!-- 1-Click Copy Button for Reddit / Threads -->
+        <button type="button" class="copy-summary-btn" id="btn-copy-summary">
+          📋 Copy My EV Savings Summary (for Reddit / Threads)
+        </button>
+
+        <!-- Dynamic Contextual Pain-Point Hardware Trigger -->
+        <div class="pain-trigger-card mode-l2" id="pain-trigger-card">
+          <h3 class="pain-trigger-title" id="pain-trigger-title">
+            🔋 How much capacity has your battery actually lost?
+          </h3>
+          <p class="pain-trigger-desc" id="pain-trigger-desc">
+            Pair a Bluetooth BLE OBD2 scanner with the EV Savings iOS app to log your real State of Health (SOH %) and export a verified Battery Health PDF Certificate.
+          </p>
+          <div class="pain-trigger-actions">
+            <a href="#gear" class="pain-trigger-cta" id="pain-trigger-cta" data-highlight-target="obd2">
+              See Compatible OBD2 Scanners ↓
+            </a>
+            <a href="https://www.amazon.com/dp/B08NFLL3NT?tag=evsavings-20" target="_blank" rel="noopener noreferrer sponsored" class="nav-link" id="pain-trigger-amazon-direct" style="font-size: 0.8rem; color: var(--cyan);">
+              View OBDLink CX BLE on Amazon ↗
+            </a>
+          </div>
+        </div>
+
+      </section>
+
     </div>
+
+    <!-- Second App Store Callout Under Calculator Results -->
+    <div class="app-callout-banner" style="margin-top: 24px;">
+      <div class="app-callout-content">
+        <div class="app-callout-eyebrow">📲 Want Real-Time Live Tracking &amp; SOH Battery Logs?</div>
+        <h2 class="app-callout-title">EV Savings: Charging Log for iOS</h2>
+        <p class="app-callout-sub">
+          <em>7-in-1 Offline EV Utility: Real-Time Live Charge Tracker, Dual-Tariff Night Timer, Winter Range Loss &amp; SOH Battery PDF Certificates.</em>
+        </p>
+        <div class="trust-badges">
+          <span class="trust-badge">🔒 100% Offline-First</span>
+          <span class="trust-badge">🚫 No Account Required</span>
+          <span class="trust-badge">⚡ Built for US &amp; EU EV Drivers</span>
+        </div>
+      </div>
+      <div>
+        <a href="https://apps.apple.com/us/app/ev-savings-charging-log/id6811996427" target="_blank" rel="noopener noreferrer" class="appstore-btn">
+          <span> Get EV Savings on iOS</span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Recommended EV Gear Hub (#gear) -->
+  <section id="gear" class="gear-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>⚡ Recommended EV Gear Hub</h2>
+        <p>
+          Hardware tested and selected for high-efficiency home charging, accurate SOH battery telemetry, and reliable NACS road-trip fast charging.
+        </p>
+      </div>
+
+      <!-- Mandatory Amazon Associates Disclosure Above Gear Grid -->
+      <div class="affiliate-disclosure-box" role="note">
+        <strong>Affiliate Disclosure:</strong> <em>As an Amazon Associate I earn from qualifying purchases. Product recommendations are independently selected based on real-world EV charging efficiency and compatibility.</em>
+      </div>
+
+      <!-- Dynamic Gear Cards Grid (Populated from GEAR_CATALOG in app.js) -->
+      <div class="gear-grid" id="gear-grid-container">
+        <noscript>
+          <p>Please enable JavaScript to view the interactive EV Gear catalog.</p>
+        </noscript>
+      </div>
+
+      <!-- Mandatory Amazon Associates Disclosure Below Gear Grid -->
+      <div class="affiliate-disclosure-box" style="margin-top: 22px; margin-bottom: 0;" role="note">
+        <strong>Affiliate Disclosure:</strong> <em>As an Amazon Associate I earn from qualifying purchases. Product recommendations are independently selected based on real-world EV charging efficiency and compatibility.</em>
+      </div>
+    </div>
+  </section>
+
+  <!-- GEO / SEO Frequently Asked Questions Section -->
+  <section id="faq" class="faq-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Frequently Asked EV Charging Questions</h2>
+        <p>Key engineering benchmarks for home charging efficiency, DC fast taper curves, and battery health.</p>
+      </div>
+      <div class="faq-grid">
+        <article class="faq-card">
+          <h3>How much does it cost to charge an EV at home vs. gas?</h3>
+          <p>
+            Adding 45 kWh (20% to 80% on a 75 kWh battery) draws ~49.3 kWh from the wall at 91.3% Level 2 efficiency—costing just <strong>$6.90</strong> at $0.14/kWh (or <strong>$3.94</strong> on an $0.08/kWh night tariff), compared to ~$19.69 in gas or $21.60 at a $0.48/kWh DC Fast station.
+          </p>
+        </article>
+        <article class="faq-card">
+          <h3>How long does Level 1 vs. Level 2 charging take?</h3>
+          <p>
+            A 120V / 12A Level 1 outlet delivers only ~1.19 kW net to the pack (~85% efficiency), requiring <strong>32–38 hours</strong> for a 20%→80% session. A 240V / 32A–40A Level 2 charger (NEMA 14-50) cuts that to <strong>4.7–5.8 hours</strong>, easily finishing inside overnight off-peak windows.
+          </p>
+        </article>
+        <article class="faq-card">
+          <h3>Why does DC Fast charging slow down above 80%?</h3>
+          <p>
+            Above 80% SoC, your EV's Battery Management System (BMS) enters the Constant Voltage (CV) taper phase to prevent lithium plating. Charging speed drops to ~40–50 kW average, making 80%→100% take nearly as long as 20%→80%.
+          </p>
+        </article>
+        <article class="faq-card">
+          <h3>How to check EV battery State of Health (SOH)?</h3>
+          <p>
+            Pair a low-power Bluetooth 5.0 BLE OBD2 scanner (such as the <strong>OBDLink CX</strong> or <strong>Veepeak OBDCheck BLE+</strong>) with your phone, and log your pack's SOH % and full-charge range in the <strong>EV Savings: Charging Log</strong> iOS app to export a PDF Battery Health Certificate.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer with Mandatory Legal Links & Amazon Disclosure -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-links">
+        <a href="https://apps.apple.com/us/app/ev-savings-charging-log/id6811996427" target="_blank" rel="noopener noreferrer"> EV Savings on App Store</a>
+        <a href="#calculator">⚡ Web Calculator</a>
+        <a href="#gear">🔌 Recommended EV Gear</a>
+        <a href="privacy-policy.html">📄 Privacy Policy</a>
+        <a href="support.html">🛠️ Support &amp; Help Center</a>
+        <a href="app-ads.txt">📋 app-ads.txt</a>
+      </div>
+      <p style="margin: 0 0 10px;">
+        <strong>Affiliate Disclosure:</strong> <em>As an Amazon Associate I earn from qualifying purchases. Product recommendations are independently selected based on real-world EV charging efficiency and compatibility.</em>
+      </p>
+      <p style="margin: 0; color: var(--text-subtle);">
+        &copy; 2026 Yurii Ishchenko. All rights reserved. • Built for electric vehicle drivers in the US, Canada, UK &amp; EU.
+      </p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
 </body>
 </html>
