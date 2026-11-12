@@ -1421,12 +1421,80 @@ function highlightGearCard(gearId, shouldScroll = true) {
 }
 
 /**
- * Parses URL query parameters (?lang=en|uk|de & ?highlight=l2|obd2|nacs) and hashes (#gear, #calculator).
+ * Displays a top comparison teaser banner when opened via shared viral receipt (?ev100=&ice100=&cur=&lang=).
+ */
+function renderSharedTeaserBanner(ev100, ice100, cur, lang) {
+  const container = document.querySelector('.hero-section .container');
+  if (!container) return;
+
+  let existing = document.getElementById('shared-teaser-banner');
+  if (!existing) {
+    existing = document.createElement('div');
+    existing.id = 'shared-teaser-banner';
+    existing.className = 'shared-teaser-banner';
+    container.insertBefore(existing, container.firstChild);
+  }
+
+  const currencyStr = cur || (lang === 'uk' ? '₴' : '$');
+  let titleText = '';
+  let subText = '';
+  let ctaText = '';
+
+  if (lang === 'uk') {
+    titleText = `⚡ Порівняння від друга: Електромобіль витрачає ${ev100} ${currencyStr} / 100 км проти ${ice100} ${currencyStr} на пальному!`;
+    subText = 'Розрахуйте своє авто нижче або відкрийте 3-річну окупність, нічний таймер та журнал SOH у безкоштовному додатку EV Savings.';
+    ctaText = ' Завантажити в App Store';
+  } else if (lang === 'de') {
+    titleText = `⚡ E-Auto-Vergleich von Freunden: ${ev100} ${currencyStr} / 100 km vs. ${ice100} ${currencyStr} für Kraftstoff!`;
+    subText = 'Berechnen Sie Ihr Fahrzeug unten oder nutzen Sie den 3-Jahres-ROI, Nachttarif-Timer & SOH-Log in der kostenlosen EV Savings App.';
+    ctaText = ' Im App Store laden';
+  } else {
+    titleText = `⚡ Friend's comparison: EV costs ${ev100} ${currencyStr} / 100 km vs ${ice100} ${currencyStr} on fuel!`;
+    subText = 'Calculate your car below, or unlock 3-Year ROI, Night Tariff Timer & SOH Log in the free EV Savings app.';
+    ctaText = ' Download on App Store';
+  }
+
+  existing.style.display = 'flex';
+  existing.style.background = 'linear-gradient(135deg, rgba(16, 185, 129, 0.18), rgba(15, 23, 42, 0.95))';
+  existing.style.border = '1px solid rgba(16, 185, 129, 0.45)';
+  existing.style.borderRadius = '14px';
+  existing.style.padding = '16px 20px';
+  existing.style.marginBottom = '20px';
+  existing.style.alignItems = 'center';
+  existing.style.justifyContent = 'space-between';
+  existing.style.gap = '16px';
+  existing.style.flexWrap = 'wrap';
+
+  existing.innerHTML = `
+    <div style="flex: 1; min-width: 260px;">
+      <div style="font-size: 11px; font-weight: 800; color: #10b981; letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 4px;">
+        ⚡ Friend's Shared Cost Teaser
+      </div>
+      <div style="font-size: 15px; font-weight: 700; color: #ffffff; margin-bottom: 4px;">
+        ${titleText}
+      </div>
+      <div style="font-size: 12.5px; color: rgba(255, 255, 255, 0.75); line-height: 1.4;">
+        ${subText}
+      </div>
+    </div>
+    <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+      <a href="${APP_STORE_URL}" target="_blank" rel="noopener noreferrer" class="appstore-btn" style="white-space: nowrap; padding: 10px 16px; font-size: 13px; font-weight: 700;">
+        ${ctaText}
+      </a>
+    </div>
+  `;
+}
+
+/**
+ * Parses URL query parameters (?lang=en|uk|de & ?highlight=l2|obd2|nacs & ?ev100=&ice100=&cur=) and hashes (#gear, #calculator).
  */
 function handleDeepLinksOnLoad() {
   const params = new URLSearchParams(window.location.search);
   const langParam = (params.get('lang') || '').toLowerCase().trim();
   const highlightParam = params.get('highlight');
+  const ev100Param = params.get('ev100');
+  const ice100Param = params.get('ice100');
+  const curParam = (params.get('cur') || '').toUpperCase().trim();
   const hash = window.location.hash;
 
   let initialLang = 'en';
@@ -1444,6 +1512,10 @@ function handleDeepLinksOnLoad() {
   }
 
   setLanguage(initialLang, false);
+
+  if (ev100Param && ice100Param) {
+    renderSharedTeaserBanner(ev100Param, ice100Param, curParam, initialLang);
+  }
 
   if (highlightParam) {
     highlightGearCard(highlightParam, true);
