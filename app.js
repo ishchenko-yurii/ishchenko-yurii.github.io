@@ -117,6 +117,108 @@ const GEAR_CATALOG = [
     },
   },
   {
+    id: 'anker',
+    icon: '🔥',
+    badgeStyle: 'emerald',
+    primaryUrl: `https://www.amazon.com/dp/B0CZ7BL16W?tag=${AMAZON_TAG}`,
+    secondaryUrl: `https://www.amazon.com/s?k=Anker+167.5W+Car+Charger+A2737+USB-C&tag=${AMAZON_TAG}`,
+    isAffiliate: true,
+    i18n: {
+      en: {
+        badge: 'Thermal-Safe 12V Laptop Power',
+        title: 'Anker 167.5W Max 3-Port USB-C Car Charger (A2737)',
+        model: 'Anker Nano / 167.5W Car Charger (100W PD + 45W + 22.5W, ActiveShield 2.0)',
+        why: 'Cheap plastic 12V adapters melt drawing 10A+ for a laptop. Delivers 100W USB-C PD for MacBook Pro & laptops with metal heat dissipation and ActiveShield 2.0 thermal throttling.',
+        primaryCtaText: 'Check Anker 167.5W on Amazon ↗',
+        secondaryCtaText: 'Browse 100W+ Thermal-Safe Car Chargers ↗',
+      },
+      uk: {
+        badge: 'Безпечна зарядка ноутбука від 12V',
+        title: 'Автозарядка Anker 167.5W Max 3-Port USB-C (A2737)',
+        model: 'Anker 167.5W Car Charger (100W PD + 45W + 22.5W, ActiveShield 2.0)',
+        why: 'Дешеві пластикові адаптери плавляться при струмі 10A+ від ноутбука. Видає 100W PD для MacBook Pro із металевим тепловідводом та контролем температури ActiveShield 2.0.',
+        primaryCtaText: 'Переглянути Anker 167.5W на Amazon ↗',
+        secondaryCtaText: 'Усі 100W+ автозарядки з термозахистом ↗',
+      },
+      de: {
+        badge: 'Hitzeschutz für 12V-Laptop-Laden',
+        title: 'Anker 167,5W Max 3-Port USB-C Kfz-Ladegerät (A2737)',
+        model: 'Anker 167,5W Car Charger (100W PD + 45W + 22,5W, ActiveShield 2.0)',
+        why: 'Billige 12V-Adapter schmelzen bei 10A+ Dauerlast. Bietet 100W USB-C PD für MacBook Pro & Laptops mit Metall-Kühlkörper und aktiver ActiveShield 2.0 Temperaturkontrolle.',
+        primaryCtaText: 'Anker 167,5W auf Amazon ansehen ↗',
+        secondaryCtaText: 'Alle 100W+ Kfz-Ladegeräte ansehen ↗',
+      },
+    },
+  },
+  {
+    id: 'noco',
+    icon: '🪫',
+    badgeStyle: 'cyan',
+    primaryUrl: `https://www.amazon.com/dp/B015TKUPIC?tag=${AMAZON_TAG}`,
+    secondaryUrl: `https://www.amazon.com/s?k=NOCO+Boost+Plus+GB40+1000A+Jump+Starter&tag=${AMAZON_TAG}`,
+    isAffiliate: true,
+    i18n: {
+      en: {
+        badge: 'Winter 12V EV & Gas Rescue',
+        title: 'NOCO Boost Plus GB40 1000A UltraSafe Jump Starter',
+        model: 'NOCO GB40 12V Lithium Jump Pack (Spark-Proof, up to 6.0L Gas)',
+        why: 'Even with 80% in your main EV pack, a dead 12V accessory battery locks doors and contactors in frost. Keep this compact spark-proof booster in the glovebox or frunk.',
+        primaryCtaText: 'View NOCO Boost GB40 on Amazon ↗',
+        secondaryCtaText: 'Browse Compact 12V Lithium Boosters ↗',
+      },
+      uk: {
+        badge: 'Порятунок 12V АКБ узимку',
+        title: 'Пусковий бустер NOCO Boost Plus GB40 1000A UltraSafe',
+        model: 'NOCO GB40 12V Lithium Jump Starter (захист від іскри, до 6.0L)',
+        why: 'Навіть при 80% заряду основної батареї EV просідання малого 12V акумулятора в мороз повністю блокує авто. Компактний бустер із захистом від іскри рятує за 60 секунд.',
+        primaryCtaText: 'Відкрити NOCO Boost GB40 на Amazon ↗',
+        secondaryCtaText: 'Переглянути 12V літієві бустери ↗',
+      },
+      de: {
+        badge: 'Winter-Rettung bei 12V-Ausfall',
+        title: 'NOCO Boost Plus GB40 1000A UltraSafe Starthilfe',
+        model: 'NOCO GB40 12V Lithium Jump Starter (Funkenschutz, bis 6,0L)',
+        why: 'Selbst bei 80 % Hochvoltakku legt eine leere 12V-Batterie im Frost das gesamte E-Auto lahm. Diese kompakte, funkengeschützte Starthilfe gehört ins Handschuhfach.',
+        primaryCtaText: 'NOCO Boost GB40 auf Amazon ansehen ↗',
+        secondaryCtaText: 'Kompakte 12V-Starthilfen vergleichen ↗',
+      },
+    },
+  },
+  {
+    id: 'viofo',
+    icon: '📹',
+    badgeStyle: 'emerald',
+    primaryUrl: `https://www.amazon.com/dp/B0CKYFSKNN?tag=${AMAZON_TAG}`,
+    secondaryUrl: `https://www.amazon.com/dp/B0CHDXPGP1?tag=${AMAZON_TAG}`,
+    isAffiliate: true,
+    i18n: {
+      en: {
+        badge: 'Night Plate Clarity (STARVIS 2)',
+        title: 'VIOFO A229 Pro 2CH 4K + 2K HDR Dual Dash Cam',
+        model: 'VIOFO A229 Pro (Sony STARVIS 2 IMX678 + IMX675, CPL & Voice Control)',
+        why: 'Most dashcams blur plates in oncoming headlights. Dual Sony STARVIS 2 HDR sensors, included CPL filter, and "Lock The Video" voice command capture crisp night evidence.',
+        primaryCtaText: 'View VIOFO A229 Pro 2CH on Amazon ↗',
+        secondaryCtaText: 'Add VIOFO HK4 Parking Hardwire Kit ↗',
+      },
+      uk: {
+        badge: 'Чіткі номери вночі (STARVIS 2)',
+        title: 'Відеореєстратор VIOFO A229 Pro 2CH 4K + 2K HDR',
+        model: 'VIOFO A229 Pro (Sony STARVIS 2 IMX678 + IMX675, CPL-фільтр, 5GHz Wi-Fi)',
+        why: 'Звичайні камери сліпнуть від зустрічних фар. Подвійні сенсори Sony STARVIS 2 з HDR, штатний CPL-фільтр і голосова команда «Lock The Video» зберігають читабельні номери вночі.',
+        primaryCtaText: 'Переглянути VIOFO A229 Pro 2CH на Amazon ↗',
+        secondaryCtaText: 'Кабель паркування VIOFO HK4 Hardwire ↗',
+      },
+      de: {
+        badge: 'Klare Kennzeichen bei Nacht (STARVIS 2)',
+        title: 'VIOFO A229 Pro 2CH 4K + 2K HDR Dual-Dashcam',
+        model: 'VIOFO A229 Pro (Sony STARVIS 2 IMX678 + IMX675, CPL-Filter, 5GHz Wi-Fi)',
+        why: 'Standard-Dashcams überstrahlen bei Gegenlicht. Dual-Sony-STARVIS-2-HDR-Sensoren, CPL-Polfilter und „Lock The Video“-Sprachsteuerung sichern scharfe Nachtaufnahmen.',
+        primaryCtaText: 'VIOFO A229 Pro 2CH auf Amazon ansehen ↗',
+        secondaryCtaText: 'VIOFO HK4 Parkmodus-Hardwire-Kit ↗',
+      },
+    },
+  },
+  {
     id: 'ios_app',
     icon: '📲',
     badgeStyle: 'cyan',
@@ -126,7 +228,7 @@ const GEAR_CATALOG = [
     i18n: {
       en: {
         badge: 'Available on the App Store',
-        title: 'EV Savings: Charging Log (iOS App — Free / $12.99 Lifetime Pro)',
+        title: 'EV Savings: Charging Log (iOS App — Free 3-Day Trial)',
         model: '7-in-1 Offline EV Utility Suite for iPhone & iPad',
         why: 'Full 7-utility toolkit in your pocket: Live Charge Real-Time Tracker, Dual-Tariff Night Timer, Winter & Highway Range Loss, SOH Degradation Log & Official Battery Health PDF Certificate.',
         primaryCtaText: 'Download on the App Store (Free) ',
@@ -134,7 +236,7 @@ const GEAR_CATALOG = [
       },
       uk: {
         badge: 'Доступно в Apple App Store',
-        title: 'EV Savings: Charging Log (iOS-додаток — Free / $12.99 Lifetime Pro)',
+        title: 'EV Savings: Charging Log (iOS-додаток — Free 3-Day Trial)',
         model: '7-в-1 офлайн-утиліта для водіїв електромобілів на iPhone та iPad',
         why: 'Повний пакет із 7 інструментів у кишені: Live-трекер зарядки в реальному часі, таймер нічного тарифу, калькулятор зимової втрати запасу ходу, журнал деградації SOH % та експорт PDF-сертифіката батареї.',
         primaryCtaText: 'Завантажити в App Store (Безкоштовно) ',
@@ -142,7 +244,7 @@ const GEAR_CATALOG = [
       },
       de: {
         badge: 'Im Apple App Store erhältlich',
-        title: 'EV Savings: Charging Log (iOS-App — Gratis / 12,99 $ Lifetime Pro)',
+        title: 'EV Savings: Charging Log (iOS-App — Free 3-Day Trial)',
         model: '7-in-1 Offline-EV-Toolkit für iPhone & iPad',
         why: 'Alle 7 EV-Rechner in der Tasche: Echtzeit-Lade-Tracker, Nachttarif-Timer, Winter- & Autobahn-Reichweitenverlust, SOH-Degradations-Logbuch & offizielles Batterie-PDF-Zertifikat.',
         primaryCtaText: 'Im App Store laden (Kostenlos) ',
@@ -365,8 +467,8 @@ const LOCALES = {
       btnCopied: '✅ Copied! Ready to paste on Reddit / Threads',
       bottomEyebrow: '📲 Want Real-Time Live Tracking & SOH Battery Logs?',
       btnDownloadBottom: ' Get EV Savings on iOS',
-      gearHeaderTitle: '⚡ Recommended EV Gear Hub',
-      gearHeaderSub: 'Hardware tested and selected for high-efficiency home charging, accurate SOH battery telemetry, and reliable NACS road-trip fast charging.',
+      gearHeaderTitle: '⚡ Tested EV & Driver Gear Hub',
+      gearHeaderSub: 'Hardware tested for home Level 2 charging, SOH OBD2 telemetry, NACS Supercharging, 100W+ 12V laptop power, winter 12V jump-starting, and 4K STARVIS 2 dashcams.',
       gearHighlightBanner: '🎯 Recommended for Your Setup',
       disclosurePrefix: 'Affiliate Disclosure:',
       disclosureText: 'As an Amazon Associate I earn from qualifying purchases. Product recommendations are independently selected based on real-world EV charging efficiency and compatibility.',
@@ -485,8 +587,8 @@ const LOCALES = {
       btnCopied: '✅ Скопійовано! Готово до вставки у Threads / Telegram / Reddit',
       bottomEyebrow: '📲 Потрібен Live-трекер зарядки та журнал деградації SOH?',
       btnDownloadBottom: ' Завантажити EV Savings на iOS',
-      gearHeaderTitle: '⚡ Рекомендоване обладнання для EV (Gear Hub)',
-      gearHeaderSub: 'Перевірені домашні зарядні станції Level 2, Bluetooth BLE OBD2-сканери для діагностики SOH % батареї та швидкісні адаптери Tesla Supercharger.',
+      gearHeaderTitle: '⚡ Перевірене обладнання для EV та водіїв (Gear Hub)',
+      gearHeaderSub: 'Зарядні станції Level 2, OBD2-сканери SOH %, NACS-адаптери, 100W+ автозарядки для ноутбука, зимові бустери 12V та 4K STARVIS 2 відеореєстратори.',
       gearHighlightBanner: '🎯 Рекомендовано для вашої конфігурації',
       disclosurePrefix: 'Партнерський дисклеймер (Affiliate Disclosure):',
       disclosureText: 'As an Amazon Associate I earn from qualifying purchases. Product recommendations are independently selected based on real-world EV charging efficiency and compatibility.',
@@ -606,8 +708,8 @@ const LOCALES = {
       btnCopied: '✅ Kopiert! Bereit zum Einfügen auf Reddit / Threads',
       bottomEyebrow: '📲 Echtzeit-Lade-Tracker & SOH-Batterie-Logbuch gesucht?',
       btnDownloadBottom: ' EV Savings für iOS laden',
-      gearHeaderTitle: '⚡ Empfohlenes EV-Zubehör (Gear Hub)',
-      gearHeaderSub: 'Geprüfte Hardware für effizientes Heimladen, präzise SOH-Batteriediagnose per OBD2 und zuverlässige Schnelllade-Adapter.',
+      gearHeaderTitle: '⚡ Geprüftes EV- & Fahrer-Zubehör (Gear Hub)',
+      gearHeaderSub: 'Geprüfte Hardware für Level-2-Heimladen, SOH-OBD2-Diagnose, NACS-Adapter, 100W+ Kfz-Ladegeräte für Laptops, Winter-12V-Starthilfen & 4K-STARVIS-2-Dashcams.',
       gearHighlightBanner: '🎯 Empfohlen für Ihr Setup',
       disclosurePrefix: 'Affiliate-Hinweis (Affiliate Disclosure):',
       disclosureText: 'As an Amazon Associate I earn from qualifying purchases. Product recommendations are independently selected based on real-world EV charging efficiency and compatibility.',
@@ -1400,7 +1502,7 @@ function renderGearCatalog() {
 }
 
 /**
- * Highlights a specific gear card (l2, obd2, nacs, ios_app) and scrolls it into focus.
+ * Highlights a specific gear card (l2, obd2, nacs, anker, noco, viofo, ios_app) and scrolls it into focus.
  */
 function highlightGearCard(gearId, shouldScroll = true) {
   const normalized = (gearId || '').toLowerCase().trim();
@@ -1486,7 +1588,7 @@ function renderSharedTeaserBanner(ev100, ice100, cur, lang) {
 }
 
 /**
- * Parses URL query parameters (?lang=en|uk|de & ?highlight=l2|obd2|nacs & ?ev100=&ice100=&cur=) and hashes (#gear, #calculator).
+ * Parses URL query parameters (?lang=en|uk|de & ?highlight=l2|obd2|nacs|anker|noco|viofo & ?ev100=&ice100=&cur=) and hashes (#gear, #calculator).
  */
 function handleDeepLinksOnLoad() {
   const params = new URLSearchParams(window.location.search);
